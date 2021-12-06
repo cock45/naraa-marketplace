@@ -18,7 +18,9 @@ import {
   GenPosterView,
   MarketView,
   MarketAllView,
-  ArtsView
+  ArtsView,
+  ProfileView,
+  ListForSaleView,
 } from './views';
 import { AdminView } from './views/admin';
 import { PackView } from './views/pack';
@@ -113,6 +115,17 @@ export function Routes() {
               exact
               path="/market"
               component={() => <MarketView />}
+            />
+
+            <Route
+             exact path="/profile"
+             component={() => <ProfileView />}
+            />
+
+            <Route
+              exact
+              path="/listforsale"
+              component={() => <ListForSaleView />}
             />
 
             <Route path="/" component={() => <HomeView />} />

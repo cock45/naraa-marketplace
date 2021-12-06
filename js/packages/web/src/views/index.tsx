@@ -17,3 +17,7 @@ export { GenPosterView } from './genPoster';
 export { MarketView } from './market';
 export { MarketAllView } from './marketAll';
 export { ArtsView } from './arts';
+
+export { ProfileView } from './profile';
+
+export { ListForSaleView } from './listForSale';
