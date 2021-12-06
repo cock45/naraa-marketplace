@@ -8,3 +8,12 @@ export { AuctionCreateView } from './auctionCreate';
 export { ArtworksView } from './artworks';
 export { AnalyticsView } from './analytics';
 export { StaticPageView } from './staticPage';
+
+export { CollectionsView } from './collections';
+export { EachCollectionView } from './eachCollection';
+export { EachCollectionNFTView } from './eachCollectionNFT';
+export { GenPosterView } from './genPoster';
+
+export { MarketView } from './market';
+export { MarketAllView } from './marketAll';
+export { ArtsView } from './arts';

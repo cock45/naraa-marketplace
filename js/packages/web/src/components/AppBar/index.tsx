@@ -1,18 +1,33 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { 
+  useMemo,
+  useCallback,
+  useState,
+  useContext,
+  createContext,
+  useEffect,
+  ReactNode,
+  FC,
+} from 'react';
+import { useDispatch } from 'react-redux';
+import { onRegister } from '../../redux/actions';
 import { Link } from 'react-router-dom';
-import { Button, Menu, Modal } from 'antd';
+import { Button, Menu, Modal, Dropdown, Image, Input } from 'antd';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Notifications } from '../Notifications';
 import useWindowDimensions from '../../utils/layout';
 import { MenuOutlined } from '@ant-design/icons';
 import { HowToBuyModal } from '../HowToBuyModal';
 import { HashQueryLink } from '@oyster/common';
+import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
 import {
   Cog,
   CurrentUserBadge,
   CurrentUserBadgeMobile,
 } from '../CurrentUserBadge';
 import { ConnectButton } from '@oyster/common';
+import { useForm } from "react-hook-form";
+import IUser from '../../redux/shared/IUser';
 
 const getDefaultLinkActions = (connected: boolean) => {
   return [
@@ -28,8 +43,71 @@ const getDefaultLinkActions = (connected: boolean) => {
   ];
 };
 
+export interface WalletModalContextState {
+  visible: boolean;
+  setVisible: (open: boolean) => void;
+}
+
+export const WalletModalContext = createContext<WalletModalContextState>(
+  {} as WalletModalContextState,
+);
+
+export function useWalletModal(): WalletModalContextState {
+  return useContext(WalletModalContext);
+}
+
 const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
-  const { connected } = useWallet();
+  const { connected, publicKey } = useWallet();
+  const { visible, setVisible } = useWalletModal();
+  const {handleSubmit} = useForm<IUser>();
+
+  const [showWallets, setShowWallets] = useState(false);
+  const [registerModalVisible, setRegisterModalVisible] = useState(false);
+  const [userEmail, setUserEmail] = useState('');
+  const [userName, setUserName] = useState('');
+
+  const dispatch = useDispatch();
+
+  const close = useCallback(() => {
+    setVisible(false);
+    setShowWallets(false);
+  }, [setVisible, setShowWallets]);
+
+  const pubkey = publicKey?.toBase58() || '';
+  const { wallets, wallet: selected, select } = useWallet();
+
+  const phatomWallet = useMemo(() => getPhantomWallet(), []);
+
+  const connectWallet = () => {
+    console.log('public key', pubkey);
+    select(phatomWallet[0].name);
+    close();
+  };
+
+  const openModal = () => {
+    setRegisterModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setRegisterModalVisible(false);
+  };
+
+  const handledRegister = (data: IUser) => {
+    if (userEmail == '') {
+      alert('Please type your email.');
+    } else if (userName == '') {
+      alert('Please type your username.');
+    } else {
+      data.email = userEmail;
+      data.username = userName;
+      data.address = pubkey;
+      dispatch(
+        onRegister(data)
+      );
+      setRegisterModalVisible(false);
+    }
+  };
+
   return (
     <div
       style={{
@@ -37,7 +115,73 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         flexDirection: vertical ? 'column' : 'row',
       }}
     >
-      {getDefaultLinkActions(connected)}
+      <Link to={`/`}>
+        <Button className="app-btn header-btn">Explore</Button>
+      </Link>
+      <Link to={`/collections`}>
+        <Button className="app-btn header-btn">Collectibles</Button>
+      </Link>
+      <Link to={`/market`}>
+        <Button className="app-btn header-btn">Art</Button>
+      </Link>
+      <Link to={`/profile`}>
+        <Button className="app-btn header-btn">Submit Profile</Button>
+      </Link>
+      {/* <Link to={`/art/create`}>
+        <Button className="app-btn header-btn">Create</Button>
+      </Link> */}
+      {pubkey ? (
+        <Link to={``}>
+          <Button className="app-btn header-btn" onClick={openModal}>
+            Sign in
+          </Button>
+        </Link>
+      ) : (
+        <Link to={''}>
+          <Button className="app-btn header-btn" onClick={connectWallet}>
+            Connect Wallet
+          </Button>
+        </Link>
+      )}
+      <Modal visible={registerModalVisible}>
+        <h1>naraa</h1>
+        <div>
+          <h3>Email Address</h3>
+          <Input
+            type="email"
+            className="subscribe"
+            style={{ backgroundColor: '#F8F8F8', border: 'none' }}
+            value={userEmail}
+            onChange={e => setUserEmail(e.target.value)}
+          />
+        </div>
+        <p style={{ color: '#616368' }}>
+          Your email address will be used for sending trade offers and email
+          notifications.
+        </p>
+        <p>Your email address won’t be shared with any third party.</p>
+        <div style={{ marginTop: '30px' }}>
+          <h3>Username</h3>
+          <Input
+            type="name"
+            className="subscribe"
+            style={{ backgroundColor: '#F8F8F8', border: 'none' }}
+            value={userName}
+            onChange={e => setUserName(e.target.value)}
+          />
+        </div>
+        <div style={{ marginTop: '30px' }}>
+          <Button className="register-btn" onClick={handleSubmit(handledRegister)}>
+            Register
+          </Button>
+        </div>
+        <p style={{ color: '#616368', marginBottom: '30px' }}>
+          <i style={{ fontSize: '14px', marginRight: '3px' }} className="fa">
+            &#xf05a;
+          </i>
+          Solana Ledger doesn’t support message signing
+        </p>
+      </Modal>
     </div>
   );
 };
@@ -50,57 +194,34 @@ const MetaplexMenu = () => {
   if (width < 768)
     return (
       <>
-        <Modal
-          title={<img src={'/metaplex-logo.svg'} />}
-          visible={isModalVisible}
-          footer={null}
-          className={'modal-box'}
-          closeIcon={
-            <img
-              onClick={() => setIsModalVisible(false)}
-              src={'/modals/close.svg'}
-            />
+        <Dropdown
+          arrow
+          placement="bottomLeft"
+          trigger={['click']}
+          overlay={
+            <Menu>
+              <Menu.Item>
+                <Link to={`/`}>
+                  <Button className="app-btn">Explore</Button>
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to={`/artworks`}>
+                  <Button className="app-btn">
+                    {connected ? 'My Items' : 'Artworks'}
+                  </Button>
+                </Link>
+              </Menu.Item>
+              <Menu.Item>
+                <Link to={`/artists`}>
+                  <Button className="app-btn">Creators</Button>
+                </Link>
+              </Menu.Item>
+            </Menu>
           }
         >
-          <div className="site-card-wrapper mobile-menu-modal">
-            <Menu onClick={() => setIsModalVisible(false)}>
-              {getDefaultLinkActions(connected).map((item, idx) => (
-                <Menu.Item key={idx}>{item}</Menu.Item>
-              ))}
-            </Menu>
-            <div className="actions">
-              {!connected ? (
-                <div className="actions-buttons">
-                  <ConnectButton
-                    onClick={() => setIsModalVisible(false)}
-                    className="secondary-btn"
-                  />
-                  <HowToBuyModal
-                    onClick={() => setIsModalVisible(false)}
-                    buttonClassName="black-btn"
-                  />
-                </div>
-              ) : (
-                <>
-                  <CurrentUserBadgeMobile
-                    showBalance={false}
-                    showAddress={true}
-                    iconSize={24}
-                    closeModal={() => {
-                      setIsModalVisible(false);
-                    }}
-                  />
-                  <Notifications />
-                  <Cog />
-                </>
-              )}
-            </div>
-          </div>
-        </Modal>
-        <MenuOutlined
-          onClick={() => setIsModalVisible(true)}
-          style={{ fontSize: '1.4rem' }}
-        />
+          <MenuOutlined style={{ fontSize: '1.4rem' }} />
+        </Dropdown>
       </>
     );
 
@@ -117,37 +238,16 @@ export const LogoLink = () => {
 
 export const AppBar = () => {
   const { connected } = useWallet();
+
   return (
     <>
-      <div id="mobile-navbar">
-        <LogoLink />
-        <MetaplexMenu />
+      <div className="app-left app-bar-box">
+        <Link to={`/`}>
+          <Image src="./logo.png" preview={false} />
+        </Link>
       </div>
-      <div id="desktop-navbar">
-        <div className="app-left">
-          <LogoLink />
-          &nbsp;&nbsp;&nbsp;
-          <MetaplexMenu />
-        </div>
-        <div className="app-right">
-          {!connected && (
-            <HowToBuyModal buttonClassName="modal-button-default" />
-          )}
-          {!connected && (
-            <ConnectButton style={{ height: 48 }} allowWalletChange />
-          )}
-          {connected && (
-            <>
-              <CurrentUserBadge
-                showBalance={false}
-                showAddress={true}
-                iconSize={24}
-              />
-              <Notifications />
-              <Cog />
-            </>
-          )}
-        </div>
+      <div className="app-right app-bar-box">
+        <DefaultActions />
       </div>
     </>
   );

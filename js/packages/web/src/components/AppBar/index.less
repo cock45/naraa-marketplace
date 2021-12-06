@@ -1,11 +1,23 @@
 .App-Bar {
   padding: 0px;
   justify-content: space-between !important;
+  padding: 100px 100px 50px 50px;
+}
 
-  button.ant-btn:not(.connector) {
-    height: 32px;
-    background: none;
-  }
+.app-bar-box {
+  background-color: white;
+  box-shadow: none;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  // padding: 8px 10px;
+  height: 56px;
+}
+
+.app-left {
+  padding: 8px 10px;
+  margin-top: 15px;
 }
 
 .title {
@@ -29,15 +41,25 @@
   height: 40px;
   margin-right: 14px;
 }
-.wallet-wrapper {
-  padding-right: 0.7rem;
-}
+
 .app-btn {
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 24px;
   border-width: 0px;
+  padding: 10px 30px 35px;
+  border-radius: 35px;
+}
+
+// .app-btn:active {
+//   font-weight: bold;
+//   color: #000;
+// }
+
+.app-btn:hover {
+  background-color: #1341FF;
+  color: #fff;
 }
 
 .app-bar-inner {
@@ -59,3 +81,21 @@
     }
   }
 }
+
+.header-btn {
+  color: #000;
+}
+
+.loader-container.active {
+  display: none !important;
+}
+
+a:link, a:hover {
+  color: #000 !important;
+  font-weight: 500;
+}
+
+// .ant-btn:hover, .ant-btn:focus {
+//   border-color: #000 !important;
+//   background: transparent;
+// }

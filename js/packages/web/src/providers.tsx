@@ -11,6 +11,8 @@ import { AppLayout } from './components/Layout';
 import { LoaderProvider } from './components/Loader';
 import { CoingeckoProvider } from './contexts/coingecko';
 import { SPLTokenListProvider } from './contexts/tokenList';
+import { Provider } from 'react-redux';
+import store from "./redux/store";
 
 export const Providers: FC = ({ children }) => {
   return (
@@ -26,7 +28,9 @@ export const Providers: FC = ({ children }) => {
                 <MetaProvider>
                   <LoaderProvider>
                     <ConfettiProvider>
-                      <AppLayout>{children}</AppLayout>
+                      <Provider store={store}>
+                        <AppLayout>{children}</AppLayout>
+                      </Provider>
                     </ConfettiProvider>
                   </LoaderProvider>
                 </MetaProvider>

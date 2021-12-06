@@ -12,6 +12,13 @@ import {
   AuctionView,
   HomeView,
   StaticPageView,
+  CollectionsView,
+  EachCollectionView,
+  EachCollectionNFTView,
+  GenPosterView,
+  MarketView,
+  MarketAllView,
+  ArtsView
 } from './views';
 import { AdminView } from './views/admin';
 import { PackView } from './views/pack';
@@ -71,6 +78,43 @@ export function Routes() {
               component={() => <BillingView />}
             />
             <Route path="/about" component={() => <StaticPageView />} />
+
+            <Route
+              exact
+              path="/poster/:id"
+              component={() => <GenPosterView />}
+            />
+            <Route
+              exact
+              path="/collections/:collection_id/:nft_id"
+              component={() => <EachCollectionNFTView />}
+            />
+            <Route
+              exact
+              path="/collections/:collection_id"
+              component={() => <EachCollectionView />}
+            />
+            <Route
+              exact
+              path="/collections"
+              component={() => <CollectionsView />}
+            />
+            
+            <Route
+              exact
+              path="/arts"
+              component={() => <ArtsView />}
+            />
+            <Route 
+              exact path="/marketall/:id"
+              component={() => <MarketAllView />} 
+            />
+            <Route
+              exact
+              path="/market"
+              component={() => <MarketView />}
+            />
+
             <Route path="/" component={() => <HomeView />} />
           </Switch>
         </Providers>

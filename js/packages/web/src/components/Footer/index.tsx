@@ -1,130 +1,63 @@
 import React from 'react';
-import { SendOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { SendOutlined, TwitterOutlined, CopyrightOutlined } from '@ant-design/icons';
+import { Button, Form, Row, Col, Input } from 'antd';
 import { footerConf } from './footerData';
 import { LABELS } from '../../constants';
 
+const community = ['Editiorial', 'Discord', 'Instagram', 'Twitter', 'Blog', 'Help Center'];
+const legle = ['Community', 'Guideliness', 'Terms Of Service', 'Report Content', 'Bug Bounty', 'Program'];
+
 export const Footer = () => {
-  const validateMessages = {
-    types: {
-      email: 'Input is not a valid email!',
-    },
-  };
-
-  const CustomForm = (props: {
-    status: any;
-    message: any;
-    onValidated: any;
-  }) => {
-    let email: any;
-    const submit = (values: any) => {
-      email = values.user.email;
-      email &&
-        email.indexOf('@') > -1 &&
-        props.onValidated({
-          EMAIL: email,
-          // NAME: name.value
-        });
-    };
-    return (
-      <>
-        <Form
-          className={'footer-sign-up'}
-          onFinish={submit}
-          validateMessages={validateMessages}
-        >
-          <Form.Item
-            name={['user', 'email']}
-            rules={[
-              {
-                type: 'email',
-              },
-            ]}
-            style={{ display: 'flex !important' }}
-          >
-            <Input
-              className={'footer-input'}
-              type="text"
-              id="input"
-              placeholder="Email Address"
-              bordered={false}
-            />
-            <Button className={'footer-button'} htmlType="submit">
-              <SendOutlined />
-            </Button>
-          </Form.Item>
-        </Form>
-        {props.status ? (
-          <div
-            style={{
-              background: 'rgb(217,217,217)',
-              borderRadius: 2,
-              padding: 10,
-              display: 'inline-block',
-            }}
-          >
-            {props.status === 'sending' && (
-              <div style={{ color: 'blue' }}>Loading...</div>
-            )}
-            {props.status === 'error' && (
-              <div
-                style={{ color: 'red' }}
-                dangerouslySetInnerHTML={{ __html: props.message }}
-              />
-            )}
-            {props.status === 'success' && (
-              <div
-                style={{ color: 'green' }}
-                dangerouslySetInnerHTML={{ __html: props.message }}
-              />
-            )}
-          </div>
-        ) : null}
-      </>
-    );
-  };
-
-  const NewsLetterForm = () => (
-    <CustomForm status={status} message={''} onValidated={() => {}} />
-  );
-
   return (
-    <div className="footer-container">
-      <div className="footer-info">
-        {footerConf.showShopName ? (
-          <div className="footer-community">
-            <div className="sub-header">
-              {LABELS.STORE_NAME} NFT Marketplace
-            </div>
-            <div className="footer-link">Powered by Metaplex and Solana</div>
+    <div className="footer space_entire">
+      <Row gutter={16} style={{padding: '50px 0'}}>
+        <Col span={7} className="gutter-row">
+          <h3 style={{color: 'black', fontSize: '32px', fontWeight: 'bold'}}>naraa</h3>
+          <p style={{fontSize: '19px', color:'#616368'}}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <hr style={{margin: '30px 0'}} />
+          <div style={{textAlign: 'center'}}>
+            <p style={{color: 'black', fontSize: '20px'}}>
+              <strong>Subscribe To Our Newsletter</strong>
+            </p>
+            <Row gutter={16}>
+              <Col span={16} className="gutter-row">
+                <Input defaultValue="Email Address" className="subscribe" />
+              </Col>
+              <Col span={8} className="gutter-row">
+                <Button className="btn-subscribe">SUBSCRIBE</Button>
+              </Col>
+            </Row>
           </div>
-        ) : null}
-        {footerConf.components.map(component => (
-          <div className="footer-section-container">
-            <div className="sub-header">{component.title}</div>
-            {component.links.map(link => (
-              <div className="body-text">
-                <a href={link.url} target="_blank" className="footer-link">
-                  {link.label}
-                </a>
+        </Col>
+        <Col span={5}></Col>
+        <Col span={4}>
+          <p className="footer-item-header"><b>FOR ARTIST</b></p>
+          <p className="footer-item">Submit artist profile</p>
+        </Col>
+        <Col span={4}>
+          <p className="footer-item-header"><b>COMMUNITY</b></p>
+          {
+            community.map((item, index) =>
+              <div key={index}>
+                <p className="footer-item">{item}</p>
               </div>
-            ))}
-          </div>
-        ))}
-        {footerConf.showEmailSubscriber ? (
-          <div className="footer-section-container subscriber-container">
-            <div className="subscriber-text">
-              {footerConf.emailSubscriberText}
-            </div>
-            <NewsLetterForm />
-          </div>
-        ) : null}
-      </div>
-      <div className="footer-foot">
-        <div className="small-body footer-link">
-          2021 {LABELS.STORE_NAME} LLC, All rights reserved
-        </div>
-      </div>
+            )
+          }
+        </Col>
+        <Col span={4}>
+          <p className="footer-item-header"><b>LEGLE</b></p>
+          {
+            legle.map((item, index) =>
+              <div key={index}>
+                <p className="footer-item">{item}</p>
+              </div>
+            )
+          }
+        </Col>
+      </Row>
+      <p style={{textAlign: "center"}}><CopyrightOutlined /> 2021 Naraa. All Rights Reserved</p>
     </div>
   );
 };
