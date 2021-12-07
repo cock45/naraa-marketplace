@@ -207,6 +207,7 @@ export const HomeView = () => {
             <Row gutter={16}>
               {collections.map((collection, index) => (
                 <Col span={6} className="gutter-row" key={index}>
+                  <Link to={`/collections/1`}>
                   <Image
                     src={collection.image}
                     preview={false}
@@ -222,6 +223,7 @@ export const HomeView = () => {
                       <span className="text2">{collection.text2}</span>
                     </div>
                   </div>
+                  </Link>
                 </Col>
               ))}
             </Row>
@@ -230,6 +232,7 @@ export const HomeView = () => {
             <Row gutter={16}>
               {collections.map((collection, index) => (
                 <Col span={6} className="gutter-row" key={index}>
+                  <Link to={`/collections/1`}>
                   <Image
                     src={collection.image}
                     preview={false}
@@ -245,6 +248,7 @@ export const HomeView = () => {
                       <span className="text2">{collection.text2}</span>
                     </div>
                   </div>
+                  </Link>
                 </Col>
               ))}
             </Row>
@@ -253,6 +257,7 @@ export const HomeView = () => {
             <Row gutter={16}>
               {collections.map((collection, index) => (
                 <Col span={6} className="gutter-row" key={index}>
+                  <Link to={`/collections/1`}>
                   <Image
                     src={collection.image}
                     preview={false}
@@ -268,6 +273,7 @@ export const HomeView = () => {
                       <span className="text2">{collection.text2}</span>
                     </div>
                   </div>
+                  </Link>
                 </Col>
               ))}
             </Row>
@@ -288,76 +294,82 @@ export const HomeView = () => {
             <Row gutter={16}>
               {arts.map((arts, index) => (
                 <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
+                  <Link to={`/arts/`}>
+                    <Image
+                      src={arts.image}
+                      preview={false}
+                      className="rectangle6"
+                    />
+                    <div>
+                      <h3 style={{ color: 'black', fontSize: '20px' }}>
+                        {arts.name1}
+                      </h3>
+                      <Row>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text1}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text2}
+                          </p>
+                        </Col>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text3}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text4}
+                          </p>
+                        </Col>
+                        <Col span={8}></Col>
+                      </Row>
+                    </div>
+                    </Link>
                     <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
+                    <Link to={`/profile/`}>
+                    <div>
+                      <Row style={{ paddingTop: '10px' }}>
+                        <Col span={12}>
+                          <div className="space-align-block">
+                            <Space align="center">
+                              <Image src={arts.avatar} preview={false} />
+                              <div style={{ paddingLeft: '15px' }}>
+                                <h3
+                                  style={{ color: 'black', marginBottom: '-3px' }}
+                                >
+                                  ARTIST
+                                </h3>
+                                <span
+                                  className="mock-block"
+                                  style={{ color: 'black' }}
+                                >
+                                  {arts.name2}
+                                </span>
+                              </div>
+                            </Space>
+                          </div>
+                        </Col>
+                        <Col span={12}>
+                          <div
+                            className="space-align-block"
+                            style={{ marginTop: '20px', textAlign: 'right' }}
+                          >
+                            <Space>
+                              <HeartFilled
+                                style={{ color: '#C4C4C4', fontSize: '20px' }}
+                              />
                               <span
                                 className="mock-block"
-                                style={{ color: 'black' }}
+                                style={{ color: '#C4C4C4' }}
                               >
-                                {arts.name2}
+                                {arts.number}
                               </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
+                            </Space>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                    </Link>
                 </Col>
               ))}
             </Row>
@@ -366,76 +378,82 @@ export const HomeView = () => {
             <Row gutter={16}>
               {arts.map((arts, index) => (
                 <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
+                  <Link to={`/arts/`}>
+                    <Image
+                      src={arts.image}
+                      preview={false}
+                      className="rectangle6"
+                    />
+                    <div>
+                      <h3 style={{ color: 'black', fontSize: '20px' }}>
+                        {arts.name1}
+                      </h3>
+                      <Row>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text1}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text2}
+                          </p>
+                        </Col>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text3}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text4}
+                          </p>
+                        </Col>
+                        <Col span={8}></Col>
+                      </Row>
+                    </div>
+                    </Link>
                     <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
+                    <Link to={`/profile/`}>
+                    <div>
+                      <Row style={{ paddingTop: '10px' }}>
+                        <Col span={12}>
+                          <div className="space-align-block">
+                            <Space align="center">
+                              <Image src={arts.avatar} preview={false} />
+                              <div style={{ paddingLeft: '15px' }}>
+                                <h3
+                                  style={{ color: 'black', marginBottom: '-3px' }}
+                                >
+                                  ARTIST
+                                </h3>
+                                <span
+                                  className="mock-block"
+                                  style={{ color: 'black' }}
+                                >
+                                  {arts.name2}
+                                </span>
+                              </div>
+                            </Space>
+                          </div>
+                        </Col>
+                        <Col span={12}>
+                          <div
+                            className="space-align-block"
+                            style={{ marginTop: '20px', textAlign: 'right' }}
+                          >
+                            <Space>
+                              <HeartFilled
+                                style={{ color: '#C4C4C4', fontSize: '20px' }}
+                              />
                               <span
                                 className="mock-block"
-                                style={{ color: 'black' }}
+                                style={{ color: '#C4C4C4' }}
                               >
-                                {arts.name2}
+                                {arts.number}
                               </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
+                            </Space>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                    </Link>
                 </Col>
               ))}
             </Row>
@@ -444,76 +462,82 @@ export const HomeView = () => {
             <Row gutter={16}>
               {arts.map((arts, index) => (
                 <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
+                  <Link to={`/arts/`}>
+                    <Image
+                      src={arts.image}
+                      preview={false}
+                      className="rectangle6"
+                    />
+                    <div>
+                      <h3 style={{ color: 'black', fontSize: '20px' }}>
+                        {arts.name1}
+                      </h3>
+                      <Row>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text1}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text2}
+                          </p>
+                        </Col>
+                        <Col span={8}>
+                          <p style={{ color: '#1341FF', fontSize: '12px' }}>
+                            {arts.text3}
+                          </p>
+                          <p style={{ color: '#1341FF', fontSize: '10px' }}>
+                            {arts.text4}
+                          </p>
+                        </Col>
+                        <Col span={8}></Col>
+                      </Row>
+                    </div>
+                    </Link>
                     <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
+                    <Link to={`/profile/`}>
+                    <div>
+                      <Row style={{ paddingTop: '10px' }}>
+                        <Col span={12}>
+                          <div className="space-align-block">
+                            <Space align="center">
+                              <Image src={arts.avatar} preview={false} />
+                              <div style={{ paddingLeft: '15px' }}>
+                                <h3
+                                  style={{ color: 'black', marginBottom: '-3px' }}
+                                >
+                                  ARTIST
+                                </h3>
+                                <span
+                                  className="mock-block"
+                                  style={{ color: 'black' }}
+                                >
+                                  {arts.name2}
+                                </span>
+                              </div>
+                            </Space>
+                          </div>
+                        </Col>
+                        <Col span={12}>
+                          <div
+                            className="space-align-block"
+                            style={{ marginTop: '20px', textAlign: 'right' }}
+                          >
+                            <Space>
+                              <HeartFilled
+                                style={{ color: '#C4C4C4', fontSize: '20px' }}
+                              />
                               <span
                                 className="mock-block"
-                                style={{ color: 'black' }}
+                                style={{ color: '#C4C4C4' }}
                               >
-                                {arts.name2}
+                                {arts.number}
                               </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
+                            </Space>
+                          </div>
+                        </Col>
+                      </Row>
+                    </div>
+                    </Link>
                 </Col>
               ))}
             </Row>
@@ -528,254 +552,6 @@ export const HomeView = () => {
         </div>
       </div>
       <div className="little_space">
-        <h2>Top Photographies</h2>
-        <Carousel dotPosition="bottom" className="carousel1">
-          <div>
-            <Row gutter={16}>
-              {arts.map((arts, index) => (
-                <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
-                    <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
-                              <span
-                                className="mock-block"
-                                style={{ color: 'black' }}
-                              >
-                                {arts.name2}
-                              </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-          <div>
-            <Row gutter={16}>
-              {arts.map((arts, index) => (
-                <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
-                    <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
-                              <span
-                                className="mock-block"
-                                style={{ color: 'black' }}
-                              >
-                                {arts.name2}
-                              </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-          <div>
-            <Row gutter={16}>
-              {arts.map((arts, index) => (
-                <Col span={6} className="gutter-row" key={index}>
-                  <Image
-                    src={arts.image}
-                    preview={false}
-                    className="rectangle6"
-                  />
-                  <div>
-                    <h3 style={{ color: 'black', fontSize: '20px' }}>
-                      {arts.name1}
-                    </h3>
-                    <Row>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text1}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text2}
-                        </p>
-                      </Col>
-                      <Col span={8}>
-                        <p style={{ color: '#1341FF', fontSize: '12px' }}>
-                          {arts.text3}
-                        </p>
-                        <p style={{ color: '#1341FF', fontSize: '10px' }}>
-                          {arts.text4}
-                        </p>
-                      </Col>
-                      <Col span={8}></Col>
-                    </Row>
-                    <hr />
-                    <Row style={{ paddingTop: '10px' }}>
-                      <Col span={12}>
-                        <div className="space-align-block">
-                          <Space align="center">
-                            <Image src={arts.avatar} preview={false} />
-                            <div style={{ paddingLeft: '15px' }}>
-                              <h3
-                                style={{ color: 'black', marginBottom: '-3px' }}
-                              >
-                                ARTIST
-                              </h3>
-                              <span
-                                className="mock-block"
-                                style={{ color: 'black' }}
-                              >
-                                {arts.name2}
-                              </span>
-                            </div>
-                          </Space>
-                        </div>
-                      </Col>
-                      <Col span={12}>
-                        <div
-                          className="space-align-block"
-                          style={{ marginTop: '20px', textAlign: 'right' }}
-                        >
-                          <Space>
-                            <HeartFilled
-                              style={{ color: '#C4C4C4', fontSize: '20px' }}
-                            />
-                            <span
-                              className="mock-block"
-                              style={{ color: '#C4C4C4' }}
-                            >
-                              {arts.number}
-                            </span>
-                          </Space>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                </Col>
-              ))}
-            </Row>
-          </div>
-        </Carousel>
-        <div style={{ textAlign: 'center' }}>
-          <Button
-            size="large"
-            className="collections"
-            style={{ width: '275px' }}
-          >
-            See other photographies
-          </Button>
-        </div>
-      </div>
-      <div className="little_space">
         <h2>Featured Creators</h2>
 
         <Carousel dotPosition="bottom" className="carousel1">
@@ -783,6 +559,7 @@ export const HomeView = () => {
             <Row gutter={16}>
               {creators.map((creator, index) => (
                 <Col span={6} className="gutter-row" key={index}>
+                  <Link to={`/profile`}>
                   <Row gutter={12}>
                     <Col span={12}>
                       <Image src={creator.image1} preview={false} />
@@ -803,6 +580,7 @@ export const HomeView = () => {
                     </h3>
                     <p style={{ color: 'black' }}>{creator.text2} Creations</p>
                   </div>
+                  </Link>
                 </Col>
               ))}
             </Row>

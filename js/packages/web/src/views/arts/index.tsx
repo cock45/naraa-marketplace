@@ -10,6 +10,7 @@ import {
   Input
 } from 'antd';
 import { TagsTwoTone } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 const {TextArea} = Input;
 
@@ -41,6 +42,7 @@ export const ArtsView = () => {
             <Image src="./Rectangle 823.png" preview={false} width="100%" />
               <Row style={{marginTop: '30px'}}>
                 <Col span={4}>
+                  <Link to={`/profile`}>
                   <Row>
                     <Col span={8}>
                       <Image src="./avatar.svg" preview={false} />
@@ -52,8 +54,10 @@ export const ArtsView = () => {
                       </div>
                     </Col>
                   </Row>
+                  </Link>
                 </Col>
                 <Col span={4}>
+                  <Link to={`/profile`}>
                   <Row>
                     <Col span={8}>
                       <Image src="./avatar.svg" preview={false} />
@@ -65,6 +69,7 @@ export const ArtsView = () => {
                       </div>
                     </Col>
                   </Row>
+                  </Link>
                 </Col>
                 <Col span={4} offset={8}>
                   <Row>
@@ -124,7 +129,7 @@ export const ArtsView = () => {
           </Col>
         </Row>
       </div>
-      <div className="space_entire">
+      <div className='nft-colls'>
         <Row gutter={64} style={{paddingTop: '100px', paddingBottom: '30px'}}>
           <Col span={12} className="gutter-row">
             <h2 style={{marginBottom: '50px'}}>History</h2>
@@ -165,16 +170,9 @@ export const ArtsView = () => {
               <Col span={3} className="gutter-row">
                 <Image src="./avatar.svg" preview={false} />
               </Col>
-              <Col span={21} className="gutter-row">
+              <Col span={21} className="gutter-row add-comment">
                 <TextArea defaultValue="Add a new comment" className="subscribe" style={{backgroundColor: '#F3F3F3'}} />
-                <Button type="primary" className="start_collecting" style={{ fontSize:"10pt", bottom:"0px", right:"0px", position:"absolute",
-paddingTop: "1px",
-    paddingBottom: "20px",
-    paddingLeft: "15px",
-    paddingRight: "15px",
-    marginRight: "20px",
-    marginBottom: "20px",
-}}>Post</Button>
+                <Button className="start_collecting">Post</Button>
               </Col>
             </Row>
             <Row gutter={16} style={{marginTop: '20px'}}>
@@ -189,7 +187,7 @@ paddingTop: "1px",
                 <Space align="center">
                   <div style={{marginTop: '5px'}}><Image src="./market/message.svg" preview={false} /></div>
                   <span className="mock-block" style={{color: 'black'}}>reply</span>
-                  <div style={{marginTop: '5px', marginLeft: '10px'}}><Image src="./market/b_heart.svg" preview={false} /></div>
+                  <div style={{marginTop: '5px', marginLeft: '10px'}}><i className="fas fa-heart"></i></div>
                 </Space>
               </Col>
             </Row>
@@ -205,7 +203,7 @@ paddingTop: "1px",
                 <Space align="center">
                   <div style={{marginTop: '5px'}}><Image src="./market/message.svg" preview={false} /></div>
                   <span className="mock-block" style={{color: 'black'}}>reply</span>
-                  <div style={{marginTop: '5px', marginLeft: '10px'}}><Image src="./market/b_heart.svg" preview={false} /></div>
+                  <div style={{marginTop: '5px', marginLeft: '10px'}}><i className="fas fa-heart"></i></div>
                 </Space>
               </Col>
             </Row>
@@ -221,7 +219,7 @@ paddingTop: "1px",
                 <Space align="center">
                   <div style={{marginTop: '5px'}}><Image src="./market/message.svg" preview={false} /></div>
                   <span className="mock-block" style={{color: 'black'}}>reply</span>
-                  <div style={{marginTop: '5px', marginLeft: '10px'}}><Image src="./market/b_heart.svg" preview={false} /></div>
+                  <div style={{marginTop: '5px', marginLeft: '10px'}}><i className="fas fa-heart"></i></div>
                 </Space>
               </Col>
             </Row>
@@ -237,7 +235,7 @@ paddingTop: "1px",
                 <Space align="center">
                   <div style={{marginTop: '5px'}}><Image src="./market/message.svg" preview={false} /></div>
                   <span className="mock-block" style={{color: 'black'}}>reply</span>
-                  <div style={{marginTop: '5px', marginLeft: '10px'}}><Image src="./market/b_heart.svg" preview={false} /></div>
+                  <div style={{marginTop: '5px', marginLeft: '10px'}}><i className="fas fa-heart"></i></div>
                 </Space>
               </Col>
             </Row>
@@ -253,7 +251,7 @@ paddingTop: "1px",
                 <Space align="center">
                   <div style={{marginTop: '5px'}}><Image src="./market/message.svg" preview={false} /></div>
                   <span className="mock-block" style={{color: 'black'}}>reply</span>
-                  <div style={{marginTop: '5px', marginLeft: '10px'}}><Image src="./market/b_heart.svg" preview={false} /></div>
+                  <div style={{marginTop: '5px', marginLeft: '10px'}}><i className="fas fa-heart"></i></div>
                 </Space>
               </Col>
             </Row>

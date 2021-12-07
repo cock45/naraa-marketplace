@@ -28,7 +28,7 @@ import {
     };
   
     const items = Object.values(whitelistedCreatorsByCreator);
-    const [tab, setTab] = useState(0);
+    const [tab, setTab] = useState(-1);
     const [tabIndex, setTabIndex] = useState(1);
   
   

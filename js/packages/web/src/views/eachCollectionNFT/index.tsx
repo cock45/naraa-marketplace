@@ -70,7 +70,7 @@ const data = [
             <div className='favs'>
                 <div>
                     <span>Owned by</span>
-                    <span className='color-blue'> you</span>
+                    <span className='color-blue' style={{marginLeft: '10px'}}> you</span>
                 </div>
                 <div>
                     <i className="fas fa-eye font-22"></i>
@@ -81,7 +81,7 @@ const data = [
                     <span>06 favorites</span>
                 </div>
             </div>
-            <Button><Link to={`/poster/3`} className='buy-link'>SIGN TO COLLECT</Link></Button>
+            <Button className='buy-link'><Link to={`/listforsale`}>SELL</Link></Button>
             <div className='chart-area'>
                 <div className='chart-head'>
                     <span className='font-22'><i className="fas fa-chart-line font-22" style={{marginRight: '30px'}}></i>Price History</span>
@@ -149,16 +149,9 @@ const data = [
               <Col span={3} className="gutter-row">
                 <Image src="./avatar.svg" preview={false} />
               </Col>
-              <Col span={21} className="gutter-row">
+              <Col span={21} className="gutter-row add-comment">
                 <TextArea defaultValue="Add a new comment" className="subscribe" style={{backgroundColor: '#F3F3F3'}} />
-                <Button type="primary" className="start_collecting" style={{ fontSize:"10pt", bottom:"0px", right:"0px", position:"absolute",
-paddingTop: "1px",
-    paddingBottom: "20px",
-    paddingLeft: "15px",
-    paddingRight: "15px",
-    marginRight: "20px",
-    marginBottom: "20px",
-}}>Post</Button>
+                <Button className="start_collecting">Post</Button>
               </Col>
             </Row>
             <Row gutter={16} style={{marginTop: '20px'}}>

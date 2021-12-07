@@ -124,9 +124,12 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       <Link to={`/market`}>
         <Button className="app-btn header-btn">Art</Button>
       </Link>
-      <Link to={`/profile`}>
+      <Link to={`/submitprofile`} target="_blank">
         <Button className="app-btn header-btn">Submit Profile</Button>
       </Link>
+      {/* <Link to={`/profile`}>
+        <Button className="app-btn header-btn">Submit Profile</Button>
+      </Link> */}
       {/* <Link to={`/art/create`}>
         <Button className="app-btn header-btn">Create</Button>
       </Link> */}
@@ -139,7 +142,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       ) : (
         <Link to={''}>
           <Button className="app-btn header-btn" onClick={connectWallet}>
-            Connect Wallet
+            Connect to Wallet
           </Button>
         </Link>
       )}

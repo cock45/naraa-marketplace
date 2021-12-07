@@ -25,7 +25,7 @@ export const onRegister = (data: IUser) => {
   // };
   console.log('body', data);
   return (dispatch: Dispatch) => {
-    fetch('http://dev.narra.io:3001/signUp', {
+    fetch(`${process.env.APP_API_SERVER}`+'/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
