@@ -1,31 +1,16 @@
-import { REGISTER_SUCCESS } from '../shared/actionTypes';
+import {
+  REGISTER_SUCCESS,
+  GET_USER_SUCCESS,
+  GET_USER_FAILED,
+} from '../shared/actionTypes';
 import { Dispatch } from 'redux';
 import IUser from '../shared/IUser';
+import IAddress from '../shared/IAddress';
 // import swal from 'sweetalert';
 
 export const onRegister = (data: IUser) => {
-  // return async (dispatch:any) => {
-  //   const body = {
-  //     email, username, address
-  //   };
-  //   try {
-  //     const res = await authAxios.post("/signUp", body);
-  //     if (res.data.success == false) {
-  //       alert("Sorry!" + res.data.msg);
-  //     }
-  //     dispatch({
-  //       type: REGISTER_SUCCESS,
-  //       payload: {
-  //         user: res.data.user,
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.log("error!!!!", err);
-  //   }
-  // };
-  console.log('body', data);
   return (dispatch: Dispatch) => {
-    fetch(`${process.env.APP_API_SERVER}`+'/signUp', {
+    fetch( 'http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -45,6 +30,33 @@ export const onRegister = (data: IUser) => {
             },
           });
           alert('Register Success');
+        }
+      });
+  };
+};
+
+export const onGetUser = (address: IAddress) => {
+  return (dispatch: Dispatch) => {
+    fetch(`${process.env.APP_API_SERVER_LOCAL}` + '/getUser', {
+    // fetch(`${process.env.APP_API_SERVER}` + '/getUser', {
+      method: 'POST',
+      body: JSON.stringify(address),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then(response => response.json())
+      .then(registeredUser => {
+        console.log('registered', registeredUser);
+        if (!registeredUser || registeredUser.success == false) {
+        } else {
+          alert("You are already registered")
+          dispatch({
+            type: GET_USER_SUCCESS,
+            payload: {
+              user: registeredUser.user,
+            },
+          });
         }
       });
   };

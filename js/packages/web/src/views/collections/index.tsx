@@ -11,7 +11,7 @@ import {
   import { Link } from 'react-router-dom';
   import { ArtistCard } from '../../components/ArtistCard';
   import { useMeta } from '../../contexts';
-  
+  import { useSelector } from 'react-redux';
   const { Content } = Layout;
   
   export const CollectionsView = () => {

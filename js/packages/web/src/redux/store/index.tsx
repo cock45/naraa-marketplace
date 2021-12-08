@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import reducer from "../reducers/Auth";
+import reducer from "../reducers";
 import thunk from 'redux-thunk';
 import { UserState } from '../shared/UserState';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -13,5 +13,4 @@ function configureStore(initialState: UserState) {
     );
 }
 const store = configureStore(initialState);
-
 export default store;

@@ -21,6 +21,7 @@ import {
   ArtsView,
   ProfileView,
   ListForSaleView,
+  OopsView,
 } from './views';
 import { AdminView } from './views/admin';
 import { PackView } from './views/pack';
@@ -126,6 +127,12 @@ export function Routes() {
               exact
               path="/listforsale"
               component={() => <ListForSaleView />}
+            />
+
+            <Route
+              exact
+              path="/oops"
+              component={() => <OopsView />}
             />
 
             <Route path="/" component={() => <HomeView />} />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { 
+import {
   useMemo,
   useCallback,
   useState,
@@ -9,15 +9,15 @@ import {
   ReactNode,
   FC,
 } from 'react';
-import { useDispatch } from 'react-redux';
-import { onRegister } from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { onRegister, onGetUser } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal, Dropdown, Image, Input } from 'antd';
 import { CloseOutlined } from "@ant-design/icons";
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Notifications } from '../Notifications';
 import useWindowDimensions from '../../utils/layout';
-import { MenuOutlined } from '@ant-design/icons';
+import { MenuOutlined, DownOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { HowToBuyModal } from '../HowToBuyModal';
 import { HashQueryLink } from '@oyster/common';
 import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
@@ -29,7 +29,6 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { useForm } from "react-hook-form";
 import IUser from '../../redux/shared/IUser';
-
 const getDefaultLinkActions = (connected: boolean) => {
   return [
     <HashQueryLink to={`/`} key={'explore'}>
@@ -58,14 +57,17 @@ export function useWalletModal(): WalletModalContextState {
 }
 
 const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
+
+  const registeredUser = useSelector((state: any) => state.auth);
   const { connected, publicKey } = useWallet();
   const { visible, setVisible } = useWalletModal();
-  const {handleSubmit} = useForm<IUser>();
+  const { handleSubmit } = useForm<IUser>();
 
   const [showWallets, setShowWallets] = useState(false);
   const [registerModalVisible, setRegisterModalVisible] = useState(false);
   const [userEmail, setUserEmail] = useState('');
   const [userName, setUserName] = useState('');
+  const [registered, setRegistered] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -113,6 +115,37 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
     }
   };
 
+  useEffect(() => {
+    if (pubkey) {
+      dispatch(
+        onGetUser({ address: pubkey })
+      )
+    }
+  }, [pubkey])
+
+  useEffect(() => {
+    if (registeredUser) {
+      console.log('registeredUser:', registeredUser);
+      setRegistered(true);
+    }
+  }, [registeredUser])
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link to={`/profile`}>
+          <UserOutlined />View Profile
+        </Link>
+      </Menu.Item>
+      <Menu.Item style={{borderBottom: "1px solid #000"}}>
+        <Link to={`/create`}>
+          Create
+        </Link>
+      </Menu.Item>
+      <Menu.Item danger><LogoutOutlined />Sign out</Menu.Item>
+    </Menu>
+  );
+
   return (
     <div
       style={{
@@ -129,7 +162,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       <Link to={`/market`}>
         <Button className="app-btn header-btn">Art</Button>
       </Link>
-      <Link to={`/submitprofile`} target="_blank">
+      <Link to="/oops">
         <Button className="app-btn header-btn">Submit Profile</Button>
       </Link>
       {/* <Link to={`/profile`}>
@@ -138,12 +171,26 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       {/* <Link to={`/art/create`}>
         <Button className="app-btn header-btn">Create</Button>
       </Link> */}
+      
       {pubkey ? (
-        <Link to={``}>
-          <Button className="app-btn header-btn" onClick={openModal}>
-            Sign in
-          </Button>
-        </Link>
+        <>
+          {registered ? (
+            <Link to="">
+                <Dropdown overlay={menu}>
+                  <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
+                    Account <DownOutlined />
+                  </Button>
+                </Dropdown>
+            </Link>
+          ) : (
+            <Link to={``}>
+              <Button className="app-btn header-btn" onClick={openModal}>
+                Sign Up
+              </Button>
+            </Link>
+          )}
+
+        </>
       ) : (
         <Link to={''}>
           <Button className="app-btn header-btn" onClick={connectWallet}>
@@ -249,7 +296,6 @@ export const LogoLink = () => {
 
 export const AppBar = () => {
   const { connected } = useWallet();
-
   return (
     <>
       <div className="app-left app-bar-box">

@@ -1,21 +1,27 @@
-import {
-    REGISTER_SUCCESS
-  } from "../shared/actionTypes";
-  import initialState from "./initialState";
-  import {RegisterActionType} from "../shared/IActionTypes"
-  import {UserState} from "../shared/UserState"
+import { GET_USER_SUCCESS, REGISTER_SUCCESS } from '../shared/actionTypes';
+import initialState from './initialState';
+import { RegisterActionType, GetUserActionType } from '../shared/IActionTypes';
+import { UserState } from '../shared/UserState';
 
-  type ActionType = RegisterActionType;
+type ActionType = RegisterActionType | GetUserActionType;
 
-  const authReducer = (state = initialState, action: ActionType): UserState => {
-    switch (action.type) {
-      case REGISTER_SUCCESS: {
-        return {
-          ...state,
-          user: action.payload,
-        };
-      }
+const authReducer = (state = initialState, action: ActionType): UserState => {
+  switch (action.type) {
+    case REGISTER_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+      };
     }
+    case GET_USER_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    default: 
+      return state;
   }
+};
 
-  export default authReducer;
+export default authReducer;
