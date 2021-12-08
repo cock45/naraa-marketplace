@@ -10,7 +10,7 @@ import IAddress from '../shared/IAddress';
 
 export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
-    fetch( 'http://localhost:3001/signUp', {
+    fetch('https://dev-api.naraa.io/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
