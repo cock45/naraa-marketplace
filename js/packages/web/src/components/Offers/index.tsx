@@ -19,7 +19,7 @@ const images = [
     {items: ['./market/Rectangle2.svg', './market/Rectangle5.svg', './market/Rectangle8.svg']}
 ];
 
-export const ArtworksView = () => {
+export const OffersView = () => {
   return (
     <Content>
         <Row>

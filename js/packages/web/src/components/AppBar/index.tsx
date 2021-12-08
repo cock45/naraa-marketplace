@@ -13,6 +13,7 @@ import { useDispatch } from 'react-redux';
 import { onRegister } from '../../redux/actions';
 import { Link } from 'react-router-dom';
 import { Button, Menu, Modal, Dropdown, Image, Input } from 'antd';
+import { CloseOutlined } from "@ant-design/icons";
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Notifications } from '../Notifications';
 import useWindowDimensions from '../../utils/layout';
@@ -72,6 +73,10 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
     setVisible(false);
     setShowWallets(false);
   }, [setVisible, setShowWallets]);
+
+  const registerCancel = () => {
+    setRegisterModalVisible(false);
+  }
 
   const pubkey = publicKey?.toBase58() || '';
   const { wallets, wallet: selected, select } = useWallet();
@@ -146,8 +151,11 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
           </Button>
         </Link>
       )}
-      <Modal visible={registerModalVisible}>
-        <h1>naraa</h1>
+      <Modal visible={registerModalVisible} onCancel={registerCancel}>
+        <div className="registerHead">
+          <h1>naraa</h1>
+          <Button onClick={registerCancel}><CloseOutlined /></Button>
+        </div>
         <div>
           <h3>Email Address</h3>
           <Input
