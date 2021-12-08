@@ -124,7 +124,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   }, [pubkey])
 
   useEffect(() => {
-    if (registeredUser) {
+    if (registeredUser.user.length) {
       console.log('registeredUser:', registeredUser);
       setRegistered(true);
     }
