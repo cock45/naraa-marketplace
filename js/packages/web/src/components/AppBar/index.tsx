@@ -179,13 +179,12 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         <Button className="app-btn header-btn">Create</Button>
       </Link> */}
       
-      {pubkey ? (
         <>
           {registered ? (
             <Link to="">
                 <Dropdown overlay={menu}>
                   <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
-                    Account <DownOutlined />
+                    pubkey <DownOutlined />
                   </Button>
                 </Dropdown>
             </Link>
@@ -198,12 +197,31 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
           )}
 
         </>
+      {/* {pubkey ? (
+        <Link to="">
+            <Dropdown overlay={menu}>
+              <Button className="app-btn header-btn ant-dropdown-link" style={{maxWidth: ''}} onClick={e => e.preventDefault()}>
+                {pubkey} <DownOutlined />
+              </Button>
+            </Dropdown>
+        </Link>
       ) : (
         <Link to={''}>
           <Button className="app-btn header-btn" onClick={handleClick}>
             Connect to Wallet
           </Button>
         </Link>
+      )} */}
+      {connected ? (
+        <CurrentUserBadge />
+      ) : (
+        <ConnectButton
+          type="text"
+          size="large"
+          className="app-btn btn-connect-wallet"
+          style={{}}
+          allowWalletChange
+        />
       )}
       <Modal visible={registerModalVisible} onCancel={registerCancel}>
         <div className="registerHead">

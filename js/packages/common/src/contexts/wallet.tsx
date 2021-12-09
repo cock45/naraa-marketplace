@@ -54,7 +54,7 @@ export const WalletModal: FC = () => {
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
 
   return (
-    <MetaplexModal title="Connect Wallet" visible={visible} onCancel={close}>
+    <MetaplexModal title="Connect to Wallet" visible={visible} onCancel={close} className="modal-connect-wallet">
       <span
         style={{
           color: 'rgba(255, 255, 255, 0.75)',
@@ -75,6 +75,7 @@ export const WalletModal: FC = () => {
           select(phatomWallet.name);
           close();
         }}
+        style={{background: '#FFF !important'}}
       >
         <img src={phatomWallet?.icon} style={{ width: '1.2rem' }} />
         &nbsp;Connect to Phantom
