@@ -86,7 +86,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
 
   const connectWallet = () => {
-    console.log('public key', pubkey);
+    console.log('phantomewallet => ', phatomWallet.name);
     select(phatomWallet[0].name);
     close();
   };
@@ -129,6 +129,13 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       setRegistered(true);
     }
   }, [registeredUser])
+
+  const { wallet, connect } = useWallet();
+
+  const handleClick = useCallback(
+    () => (wallet ? connect().catch(() => {}) : open()),
+    [wallet, connect, open],
+  );
 
   const menu = (
     <Menu>
@@ -193,7 +200,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         </>
       ) : (
         <Link to={''}>
-          <Button className="app-btn header-btn" onClick={connectWallet}>
+          <Button className="app-btn header-btn" onClick={handleClick}>
             Connect to Wallet
           </Button>
         </Link>
