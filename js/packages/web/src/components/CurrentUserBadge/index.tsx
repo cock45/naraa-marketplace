@@ -28,6 +28,7 @@ import { TokenCircle } from '../Custom';
 const btnStyle: React.CSSProperties = {
   border: 'none',
   height: 40,
+  backgroundColor: 'transparent'
 };
 
 const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
@@ -319,7 +320,7 @@ export const CurrentUserBadge = (props: {
       >
         <Button className="wallet-key">
           {image}
-          {name && (
+          {/* {name && ( */}
             <span
               style={{
                 marginLeft: '0.5rem',
@@ -328,7 +329,7 @@ export const CurrentUserBadge = (props: {
             >
               {name}
             </span>
-          )}
+          {/* )} */}
         </Button>
       </Popover>
       <AddFundsModal
