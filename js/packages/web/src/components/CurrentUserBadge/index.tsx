@@ -45,10 +45,10 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
 
   return (
     <>
-      {store &&
-        (props.mobile ? (
+      {/* {store && */}
+        {/* (props.mobile ? ( */}
           <div className="actions-buttons actions-user">
-            {canCreate && (
+            {/* {canCreate && ( */}
               <HashQueryLink to={`/art/create`}>
                 <Button
                   onClick={() => {
@@ -59,19 +59,20 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                   Create
                 </Button>
               </HashQueryLink>
-            )}
+            {/* )} */}
             <HashQueryLink to={`/auction/create/0`}>
               <Button
                 onClick={() => {
                   props.onClick ? props.onClick() : null;
                 }}
                 className="black-btn"
+                style={{width: '50%'}}
               >
                 Sell
               </Button>
             </HashQueryLink>
           </div>
-        ) : (
+        {/* ) : (
           <div
             style={{
               display: 'flex',
@@ -93,7 +94,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
               </Button>
             </HashQueryLink>
           </div>
-        ))}
+        ))} */}
     </>
   );
 };
@@ -114,7 +115,7 @@ const AddFundsModal = (props: {
       }}
     >
       <div style={{ maxWidth: '100%' }}>
-        <p style={{ color: 'white' }}>
+        <p style={{ color: 'white', marginBottom: '15px' }}>
           We partner with <b>FTX</b> to make it simple to start purchasing
           digital collectibles.
         </p>
@@ -149,7 +150,7 @@ const AddFundsModal = (props: {
             SOL
           </span>
         </div>
-        <p>
+        <p style={{marginBottom: '15px'}}>
           If you have not used FTX Pay before, it may take a few moments to get
           set up.
         </p>
