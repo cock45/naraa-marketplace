@@ -89,7 +89,7 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
               </>
             )}
             <HashQueryLink to={`/auction/create/0`} style={{ width: '100%' }}>
-              <Button className="metaplex-button-default" style={btnStyle}>
+              <Button className="metaplex-button-default" style={btnStyle, {width: '50%}}>
                 Sell
               </Button>
             </HashQueryLink>
