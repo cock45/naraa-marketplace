@@ -216,6 +216,7 @@ export const CurrentUserBadge = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
+  
   const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
   const balanceInUSD = balance * solPrice;
   const solMintInfo = useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString());
@@ -321,7 +322,7 @@ export const CurrentUserBadge = (props: {
       >
         <Button className="wallet-key">
           {image}
-          {/* {name && ( */}
+          {name && (
             <span
               style={{
                 marginLeft: '0.5rem',
@@ -330,7 +331,7 @@ export const CurrentUserBadge = (props: {
             >
               {name}
             </span>
-          {/* )} */}
+          )}
         </Button>
       </Popover>
       <AddFundsModal
