@@ -213,7 +213,10 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         </Link>
       )} */}
       {connected ? (
-        <CurrentUserBadge />
+        <CurrentUserBadge
+          showBalance={false}
+          showAddress={true}
+        />
       ) : (
         <ConnectButton
           type="text"
