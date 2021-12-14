@@ -220,7 +220,7 @@ export const ArtCreateView = () => {
           )}
           {0 < step && step < 5 && (
             <div style={{ margin: 'auto', width: 'fit-content' }}>
-              <Button onClick={() => gotoStep(step - 1)}>Back</Button>
+              <Button onClick={() => gotoStep(step - 1)} style={{background: '#1341FF', borderColor: '#1341FF', padding: '7px 14px 30px'}}>Back</Button>
             </div>
           )}
         </Col>
@@ -239,7 +239,7 @@ const CategoryStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Create a new item</h2>
+      <h2 style={{color: '#000', marginLeft: '0px'}}>Create a new item</h2>
         <p>
           First time creating on Metaplex?{' '}
           <a href="#">Read our creators’ guide.</a>
@@ -383,7 +383,7 @@ const UploadStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Now, let's upload your creation</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Now, let's upload your creation</h2>
         <p style={{ fontSize: '1.2rem' }}>
           Your file will be uploaded to the decentralized web via Arweave.
           Depending on file type, can take up to 1 minute. Arweave is a new type
@@ -634,7 +634,7 @@ const InfoStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Describe your item</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Describe your item</h2>
         <p>
           Provide detailed description of your creative process to engage with
           your audience.
@@ -923,7 +923,7 @@ const RoyaltiesStep = (props: {
   return (
     <>
       <Row className="call-to-action" style={{ marginBottom: 20 }}>
-        <h2>Set royalties and creator splits</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Set royalties and creator splits</h2>
         <p>
           Royalties ensure that you continue to get compensated for your work
           after its initial sale.
@@ -1110,7 +1110,7 @@ const LaunchStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Launch your creation</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Launch your creation</h2>
         <p>
           Provide detailed description of your creative process to engage with
           your audience.

@@ -716,7 +716,7 @@ const CategoryStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>List an item</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>List an item</h2>
         <p>
           First time listing on Metaplex? <a>Read our sellers' guide.</a>
         </p>
@@ -1002,7 +1002,7 @@ const CopiesStep = (props: {
   return (
     <>
       <Row className="call-to-action" style={{ marginBottom: 0 }}>
-        <h2>Select which item to sell</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Select which item to sell</h2>
         <p style={{ fontSize: '1.2rem' }}>
           Select the item(s) that you want to list.
         </p>
@@ -1094,7 +1094,7 @@ const NumberOfWinnersStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Tiered Auction</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Tiered Auction</h2>
         <p>Create a Tiered Auction</p>
       </Row>
       <Row className="content-action">
@@ -1162,7 +1162,7 @@ const PriceAuction = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Price</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Price</h2>
         <p>
           Set the price for your auction.
           {props.attributes.quoteMintAddress != WRAPPED_SOL_MINT.toBase58() && ` Warning! the auction quote mint is `}
@@ -1312,7 +1312,7 @@ const InitialPhaseStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Initial Phase</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Initial Phase</h2>
         <p>Set the terms for your auction.</p>
       </Row>
       <Row className="content-action">
@@ -1431,7 +1431,7 @@ const EndingPhaseAuction = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Ending Phase</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Ending Phase</h2>
         <p>Set the terms for your auction.</p>
       </Row>
       <Row className="content-action">
@@ -1563,7 +1563,7 @@ const TierTableStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Add Winning Tiers and Their Prizes</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Add Winning Tiers and Their Prizes</h2>
         <p>
           Each row represents a tier. You can choose which winning spots get
           which tiers.
@@ -1832,7 +1832,7 @@ const ParticipationStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Participation NFT</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Participation NFT</h2>
         <p>
           Provide NFT that will be awarded as an Open Edition NFT for auction
           participation.
@@ -1931,7 +1931,7 @@ const ReviewStep = (props: {
   return (
     <>
       <Row className="call-to-action">
-        <h2>Review and list</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Review and list</h2>
         <p>Review your listing before publishing.</p>
       </Row>
       <Row className="content-action">
