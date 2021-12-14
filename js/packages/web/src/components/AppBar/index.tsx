@@ -178,25 +178,28 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       {/* <Link to={`/art/create`}>
         <Button className="app-btn header-btn">Create</Button>
       </Link> */}
-      
-        <>
-          {registered ? (
-            <Link to="">
-                <Dropdown overlay={menu}>
-                  <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
-                    pubkey <DownOutlined />
-                  </Button>
-                </Dropdown>
-            </Link>
-          ) : (
-            <Link to={``}>
-              <Button className="app-btn header-btn" onClick={openModal}>
-                Sign Up
-              </Button>
-            </Link>
-          )}
-
-        </>
+      {pubkey ? (
+      <>
+        {registered ? (
+          <Link to="">
+              <Dropdown overlay={menu}>
+                <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
+                  {pubkey} <DownOutlined />
+                </Button>
+              </Dropdown>
+          </Link>
+        ) : (
+          <Link to={``}>
+            <Button className="app-btn header-btn" onClick={openModal}>
+              Sign Up
+            </Button>
+          </Link>
+        )}
+      </>
+      )
+      : 
+      (<></>)
+      }
       {/* {pubkey ? (
         <Link to="">
             <Dropdown overlay={menu}>

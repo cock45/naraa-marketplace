@@ -8,9 +8,14 @@ import IUser from '../shared/IUser';
 import IAddress from '../shared/IAddress';
 // import swal from 'sweetalert';
 
+// const dotenv = require('dotenv');
+// dotenv.config();
+
 export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
-    fetch('https://dev-api.naraa.io/signUp', {
+    // fetch('https://dev-api.naraa.io/signUp', {
+    // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
+      fetch('http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -37,7 +42,8 @@ export const onRegister = (data: IUser) => {
 
 export const onGetUser = (address: IAddress) => {
   return (dispatch: Dispatch) => {
-    fetch(`${process.env.APP_API_SERVER_LOCAL}` + '/getUser', {
+    // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}` + '/getUser', {
+    fetch('http://localhost:3001/getUser', {
     // fetch(`${process.env.APP_API_SERVER}` + '/getUser', {
       method: 'POST',
       body: JSON.stringify(address),
