@@ -124,7 +124,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   }, [pubkey])
 
   useEffect(() => {
-    if (registeredUser.user.length) {
+    if (registeredUser.user.user) {
       console.log('registeredUser:', registeredUser);
       setRegistered(true);
     }
@@ -169,24 +169,25 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       <Link to={`/market`}>
         <Button className="app-btn header-btn">Art</Button>
       </Link>
-      <Link to="/oops">
-        <Button className="app-btn header-btn">Submit Profile</Button>
-      </Link>
+      
       {/* <Link to={`/profile`}>
         <Button className="app-btn header-btn">Submit Profile</Button>
       </Link> */}
       {/* <Link to={`/art/create`}>
         <Button className="app-btn header-btn">Create</Button>
       </Link> */}
-      {pubkey ? (
+      {pubkey && (
       <>
         {registered ? (
-          <Link to="">
-              <Dropdown overlay={menu}>
-                <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
-                  {pubkey} <DownOutlined />
-                </Button>
-              </Dropdown>
+          // <Link to="">
+          //     <Dropdown overlay={menu}>
+          //       <Button className="app-btn header-btn ant-dropdown-link" onClick={e => e.preventDefault()}>
+          //         {pubkey} <DownOutlined />
+          //       </Button>
+          //     </Dropdown>
+          // </Link>
+          <Link to={`/profile`}>
+            <Button className="app-btn header-btn">Submit Profile</Button>
           </Link>
         ) : (
           <Link to={``}>
@@ -196,10 +197,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
           </Link>
         )}
       </>
-      )
-      : 
-      (<></>)
-      }
+      )}
       {/* {pubkey ? (
         <Link to="">
             <Dropdown overlay={menu}>
@@ -216,10 +214,14 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         </Link>
       )} */}
       {connected ? (
+        <>
         <CurrentUserBadge
           showBalance={false}
           showAddress={true}
         />
+        <Notifications />
+        <Cog />
+        </>
       ) : (
         <ConnectButton
           type="text"
