@@ -216,9 +216,24 @@ export const CurrentUserBadge = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
-  
+//   console.log("ACCOUNT => ", account);
+//   {
+//     "data": {
+//         "type": "Buffer",
+//         "data": []
+//     },
+//     "executable": false,
+//     "lamports": 10000000,
+//     "owner": {
+//         "_bn": "00"
+//     },
+//     "rentEpoch": 257
+// }
+  console.log("Account => ", account);
   const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
+  console.log("Balance => ", balance);
   const balanceInUSD = balance * solPrice;
+  console.log("BalanceInUSD => ", balanceInUSD);
   const solMintInfo = useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString());
   const iconStyle: React.CSSProperties = {
     display: 'flex',
