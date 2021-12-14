@@ -700,7 +700,7 @@ export const AuctionCreateView = () => {
           {stepsByCategory[attributes.category][step][1]}
           {0 < step && stepsVisible && (
             <div style={{ margin: 'auto', width: 'fit-content' }}>
-              <Button onClick={() => gotoNextStep(step - 1)}>Back</Button>
+              <Button onClick={() => gotoNextStep(step - 1)} style={{background: '#1341FF', borderColor: '#1341FF', padding: '7px 14px 30px'}}>Back</Button>
             </div>
           )}
         </Col>
@@ -845,7 +845,7 @@ const InstantSaleStep = ({
   return (
     <>
       <Row className="call-to-action" style={{ marginBottom: 0 }}>
-        <h2>Select which item to sell:</h2>
+        <h2 style={{color: '#000', marginLeft: '0px'}}>Select which item to sell:</h2>
       </Row>
 
       <Row className="content-action">
@@ -923,8 +923,8 @@ const InstantSaleStep = ({
             </label>
           )}
           <label className="action-field">
-            <span className="field-title">Price</span>
-            <span className="field-info">
+            <span className="field-title" style={{color: '#000'}}>Price</span>
+            <span className="field-info" style={{color: '#000'}}>
               This is the instant sale price for your item.
             </span>
             <Input
