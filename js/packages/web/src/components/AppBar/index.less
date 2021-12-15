@@ -1,7 +1,7 @@
 .App-Bar {
   padding: 0px;
   justify-content: space-between !important;
-  padding: 100px 100px 50px 50px;
+  padding: 100px 50px 50px 50px;
 }
 
 .app-bar-box {
@@ -107,4 +107,32 @@ a:link, a:hover {
 
 .btn-connect-wallet:hover {
   color: #FFF !important;
+}
+
+.app-right .ant-badge {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+  .header .App-Bar {
+    padding: 100px 20px 50px 20px;
+  }
+
+  .header .app-btn.header-btn{
+    font-size: 14px;
+    padding: 6px 24px 30px;
+  }
+
+  .header .ant-btn.wallet-key {
+    font-size: 14px;
+  }
+
+  .header .anticon {
+    font-size: 18px;
+  }
+
+  .header .ant-badge {
+    font-size: 12px;
+  }
 }

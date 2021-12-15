@@ -13,9 +13,9 @@ import IAddress from '../shared/IAddress';
 
 export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
-    fetch('https://dev-api.naraa.io/signUp', {
+    // fetch('https://dev-api.naraa.io/signUp', {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
-      // fetch('http://localhost:3001/signUp', {
+      fetch('http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -24,7 +24,6 @@ export const onRegister = (data: IUser) => {
     })
       .then(response => response.json())
       .then(user => {
-        console.log('user', user);
         if (!user || user.success == false) {
           alert('Register Failed');
         } else {
@@ -34,7 +33,6 @@ export const onRegister = (data: IUser) => {
               user: user.user,
             },
           });
-          alert('Register Success');
         }
       });
   };
@@ -43,8 +41,8 @@ export const onRegister = (data: IUser) => {
 export const onGetUser = (address: IAddress) => {
   return (dispatch: Dispatch) => {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}` + '/getUser', {
-    fetch('https://dev-api.naraa.io/getUser', {
-    // fetch('http://localhost:3001/getUser', {
+    // fetch('https://dev-api.naraa.io/getUser', {
+    fetch('http://localhost:3001/getUser', {
     // fetch(`${process.env.APP_API_SERVER}` + '/getUser', {
       method: 'POST',
       body: JSON.stringify(address),
@@ -54,10 +52,8 @@ export const onGetUser = (address: IAddress) => {
     })
       .then(response => response.json())
       .then(registeredUser => {
-        console.log('registered', registeredUser);
         if (!registeredUser || registeredUser.success == false) {
         } else {
-          alert("You are already registered")
           dispatch({
             type: GET_USER_SUCCESS,
             payload: {

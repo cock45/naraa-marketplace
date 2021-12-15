@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { onRegister, onGetUser } from '../../redux/actions';
 import { Link } from 'react-router-dom';
-import { Button, Menu, Modal, Dropdown, Image, Input } from 'antd';
+import { Row, Col, Button, Menu, Modal, Dropdown, Image, Input } from 'antd';
 import { CloseOutlined } from "@ant-design/icons";
 import { useWallet } from '@solana/wallet-adapter-react';
 import { Notifications } from '../Notifications';
@@ -137,27 +137,29 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
     [wallet, connect, open],
   );
 
-  const menu = (
-    <Menu>
-      <Menu.Item>
-        <Link to={`/profile`}>
-          <UserOutlined />View Profile
-        </Link>
-      </Menu.Item>
-      <Menu.Item style={{borderBottom: "1px solid #000"}}>
-        <Link to={`/create`}>
-          Create
-        </Link>
-      </Menu.Item>
-      <Menu.Item danger><LogoutOutlined />Sign out</Menu.Item>
-    </Menu>
-  );
+  // const menu = (
+  //   <Menu>
+  //     <Menu.Item>
+  //       <Link to={`/profile`}>
+  //         <UserOutlined />View Profile
+  //       </Link>
+  //     </Menu.Item>
+  // <Menu.Item style={{borderBottom: "1px solid #000"}}>
+  //       <Link to={`/create`}>
+  //         Create
+  //       </Link>
+  //     </Menu.Item>
+  //     <Menu.Item danger><LogoutOutlined />Sign out</Menu.Item>
+  //   </Menu>
+  // );
 
   return (
     <div
       style={{
         display: 'flex',
         flexDirection: vertical ? 'column' : 'row',
+        width: '100%',
+        justifyContent: 'end'
       }}
     >
       <Link to={`/`}>
@@ -331,14 +333,20 @@ export const AppBar = () => {
   const { connected } = useWallet();
   return (
     <>
-      <div className="app-left app-bar-box">
-        <Link to={`/`}>
-          <Image src="./logo.png" preview={false} />
-        </Link>
-      </div>
-      <div className="app-right app-bar-box">
-        <DefaultActions />
-      </div>
+      <Row className="header">
+        <Col lg={8}>
+          <div className="app-left app-bar-box">
+            <Link to={`/`}>
+              <Image src="./logo.png" preview={false} />
+            </Link>
+          </div>
+        </Col>
+        <Col lg={16}>
+          <div className="app-right app-bar-box">
+            <DefaultActions />
+          </div>
+        </Col>
+      </Row>
     </>
   );
 };

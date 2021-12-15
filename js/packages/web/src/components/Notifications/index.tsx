@@ -4,6 +4,7 @@ import {
   LoadingOutlined,
   PlayCircleOutlined,
   SyncOutlined,
+  BellOutlined,
 } from '@ant-design/icons';
 import {
   findProgramAddress,
@@ -566,7 +567,13 @@ export function Notifications() {
 
   const justContent = (
     <Popover placement="bottomLeft" content={content} trigger="click">
-      <img src={'/bell.svg'} style={{ cursor: 'pointer' }} />
+      {/* <img src={'/bell.svg'} style={{ cursor: 'pointer' }} /> */}
+      <BellOutlined style={{ 
+        cursor: 'pointer',
+        fontSize: '20px',
+        color: '#000',
+        marginLeft: '14px',
+      }} />
     </Popover>
   );
 
@@ -575,7 +582,6 @@ export function Notifications() {
     return (
       <Badge
         count={notifications.length - 1}
-        style={{ backgroundColor: 'white', color: 'black' }}
       >
         {justContent}
       </Badge>

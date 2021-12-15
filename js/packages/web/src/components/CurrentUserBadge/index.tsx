@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { LAMPORTS_PER_SOL, PublicKey } from '@solana/web3.js';
 import { Button, Popover, Select } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
 import {
   ENDPOINTS,
   formatNumber,
@@ -216,24 +217,9 @@ export const CurrentUserBadge = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
-//   console.log("ACCOUNT => ", account);
-//   {
-//     "data": {
-//         "type": "Buffer",
-//         "data": []
-//     },
-//     "executable": false,
-//     "lamports": 10000000,
-//     "owner": {
-//         "_bn": "00"
-//     },
-//     "rentEpoch": 257
-// }
   console.log("Account => ", account);
   const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
-  console.log("Balance => ", balance);
   const balanceInUSD = balance * solPrice;
-  console.log("BalanceInUSD => ", balanceInUSD);
   const solMintInfo = useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString());
   const iconStyle: React.CSSProperties = {
     display: 'flex',
@@ -433,7 +419,8 @@ export const Cog = () => {
         }
       >
         <Button className="wallet-key">
-          <img src="/cog.svg" />
+          {/* <img src="/cog.svg" /> */}
+          <SettingOutlined style={{color: '#000', fontSize: '20px', marginTop: '3px'}}/>
         </Button>
       </Popover>
     </div>

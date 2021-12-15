@@ -18,6 +18,8 @@ exports.signUp = async (req, res, next) => {
     address: req.body.address,
   };
 
+  console.log('user => ', user);
+
   User.findOne({
     where: {
       email: req.body.email
