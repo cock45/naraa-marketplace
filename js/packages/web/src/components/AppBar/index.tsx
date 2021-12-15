@@ -19,7 +19,7 @@ import { Notifications } from '../Notifications';
 import useWindowDimensions from '../../utils/layout';
 import { MenuOutlined, DownOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { HowToBuyModal } from '../HowToBuyModal';
-import { HashQueryLink } from '@oyster/common';
+import { HashQueryLink, Wallet } from '@oyster/common';
 import { getPhantomWallet } from '@solana/wallet-adapter-wallets';
 import {
   Cog,
@@ -29,6 +29,13 @@ import {
 import { ConnectButton } from '@oyster/common';
 import { useForm } from "react-hook-form";
 import IUser from '../../redux/shared/IUser';
+
+//////////////////// Init Store /////////////////////////////
+import { useConnection, WhitelistedCreator, useStore } from '@oyster/common';
+import { saveAdmin } from '../../actions/saveAdmin';
+import { useHistory } from 'react-router-dom';
+////////////////////////////////////////////////////////////
+
 const getDefaultLinkActions = (connected: boolean) => {
   return [
     <HashQueryLink to={`/`} key={'explore'}>
@@ -119,8 +126,8 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
     if (pubkey) {
       dispatch(
         onGetUser({ address: pubkey })
-      )
-    }
+        )
+      }
   }, [pubkey])
 
   useEffect(() => {
@@ -129,14 +136,59 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       setRegistered(true);
     }
   }, [registeredUser])
-
+  
   const { wallet, connect } = useWallet();
-
+  
   const handleClick = useCallback(
     () => (wallet ? connect().catch(() => {}) : open()),
     [wallet, connect, open],
   );
+      
+  ///////////////////////// Init Store //////////////////////////////////////////
+  const [storeAddress, setStoreAddress] = useState<string | undefined>();
+  const myWallet = useWallet();
+  useEffect(() => {
+    if (!process.env.NEXT_PUBLIC_STORE_OWNER_ADDRESS) {
+      const getStore = async () => {
+        if (myWallet.publicKey) {
+          const store = await setStoreForOwner(myWallet.publicKey.toBase58());
+          setStoreAddress(store);
+        } else {
+          setStoreAddress(undefined);
+        }
+      };
+      getStore();
+    }
+  }, [myWallet.publicKey]);
+  const [isInitalizingStore, setIsInitalizingStore] = useState(false);
+  const connection = useConnection();
+  const { setStoreForOwner } = useStore();
+  const history = useHistory();
 
+  const initializeStore = async () => {
+    
+    if (!myWallet.publicKey) {
+      return;
+    }
+    
+    setIsInitalizingStore(true);
+    
+    await saveAdmin(connection, myWallet, false, [
+      new WhitelistedCreator({
+        address: myWallet.publicKey.toBase58(),
+        activated: true,
+      }),
+    ]);
+    
+    // TODO: process errors
+    
+    await setStoreForOwner(undefined);
+    await setStoreForOwner(myWallet.publicKey.toBase58(),);
+    
+    history.push(`/admin/${location.hash?.slice(2)}`);
+  };
+  ////////////////////////////////////////////////////////////////////////////////
+  
   // const menu = (
   //   <Menu>
   //     <Menu.Item>
@@ -152,7 +204,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   //     <Menu.Item danger><LogoutOutlined />Sign out</Menu.Item>
   //   </Menu>
   // );
-
+  
   return (
     <div
       style={{
@@ -200,6 +252,20 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
         )}
       </>
       )}
+      <Button
+        className="app-btn"
+        type="primary"
+        loading={isInitalizingStore}
+        onClick={initializeStore}
+        style={{
+          color: '#000',
+          background: 'transparent',
+          marginTop: '10px',
+          paddingRight: '0px',
+        }}
+      >
+        Init Store
+      </Button>
       {/* {pubkey ? (
         <Link to="">
             <Dropdown overlay={menu}>
