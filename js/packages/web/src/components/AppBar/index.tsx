@@ -262,6 +262,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
           background: 'transparent',
           marginTop: '10px',
           paddingRight: '0px',
+          display: 'none',
         }}
       >
         Init Store
