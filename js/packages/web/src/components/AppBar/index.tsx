@@ -66,6 +66,7 @@ export function useWalletModal(): WalletModalContextState {
 const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
 
   const registeredUser = useSelector((state: any) => state.auth);
+  console.log('AAA =>', registeredUser);
   const { connected, publicKey } = useWallet();
   const { visible, setVisible } = useWalletModal();
   const { handleSubmit } = useForm<IUser>();
@@ -115,6 +116,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
       data.email = userEmail;
       data.username = userName;
       data.address = pubkey;
+      console.log('data: ', data.email, data.username, data.address);
       dispatch(
         onRegister(data)
       );

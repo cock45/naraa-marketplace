@@ -112,8 +112,8 @@ export const ArtView = () => {
             </Row>
             <Row>
               <Col span={6}>
-                <h6>Royalties</h6>
-                <div className="royalties">
+                <h6 className="font-black">Royalties</h6>
+                <div className="royalties font-black">
                   {((art.seller_fee_basis_points || 0) / 100).toFixed(2)}%
                 </div>
               </Col>
@@ -123,7 +123,7 @@ export const ArtView = () => {
             </Row>
             <Row>
               <Col>
-                <h6 style={{ marginTop: 5 }}>Created By</h6>
+                <h6 style={{ marginTop: 5 }} className="font-black">Created By</h6>
                 <div className="creators">
                   {(art.creators || []).map((creator, idx) => {
                     return (
@@ -174,7 +174,7 @@ export const ArtView = () => {
             </Row>
             <Row>
               <Col>
-                <h6 style={{ marginTop: 5 }}>Edition</h6>
+                <h6 style={{ marginTop: 5 }} className="font-black">Edition</h6>
                 <div className="art-edition">{badge}</div>
               </Col>
             </Row>

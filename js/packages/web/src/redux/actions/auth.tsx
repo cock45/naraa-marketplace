@@ -15,7 +15,7 @@ export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
     fetch('https://dev-api.naraa.io/signUp', {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
-      // fetch('http://localhost:3001/signUp', {
+    // fetch('http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

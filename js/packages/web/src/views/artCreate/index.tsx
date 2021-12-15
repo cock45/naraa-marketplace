@@ -632,7 +632,7 @@ const InfoStep = (props: {
     );
   }, [creators]);
   return (
-    <>
+    <div className="create-page">
       <Row className="call-to-action">
         <h2 style={{color: '#000', marginLeft: '0px'}}>Describe your item</h2>
         <p>
@@ -800,7 +800,7 @@ const InfoStep = (props: {
           Continue to royalties
         </Button>
       </Row>
-    </>
+    </div>
   );
 };
 
@@ -853,7 +853,7 @@ const RoyaltiesSplitter = (props: {
                     value={amt}
                     parser={value => parseInt(value?.replace('%', '') ?? '0')}
                     onChange={handleChangeShare}
-                    className="royalties-input"
+                    className="royalties-input font-white"
                   />
                 </Col>
                 <Col span={4} style={{ paddingLeft: 12 }}>
@@ -947,7 +947,7 @@ const RoyaltiesStep = (props: {
                 seller_fee_basis_points: val * 100,
               });
             }}
-            className="royalties-input"
+            className="royalties-input font-white"
           />
         </label>
       </Row>
@@ -1289,7 +1289,7 @@ const Congrats = (props: {
       <>
         <div className="waiting-title">Sorry, there was an error!</div>
         <p>{props.alert}</p>
-        <Button onClick={_ => history.push('/art/create')}>
+        <Button onClick={_ => history.push('/art/create')} className="font-black">
           Back to Create NFT
         </Button>
       </>

@@ -217,7 +217,7 @@ export const CurrentUserBadge = (props: {
   if (!wallet || !publicKey) {
     return null;
   }
-  console.log("Account => ", account);
+  
   const balance = (account?.lamports || 0) / LAMPORTS_PER_SOL;
   const balanceInUSD = balance * solPrice;
   const solMintInfo = useTokenList().tokenMap.get(WRAPPED_SOL_MINT.toString());

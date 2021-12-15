@@ -240,7 +240,7 @@ export const AuctionView = () => {
         </Col>
         <Col className="auction-mobile-section" span={24}>
           <div className={'info-view'}>
-            <h6 className={'info-title'}>View on</h6>
+            <h6 className={'info-title font-black'}>View on</h6>
             <div style={{ display: 'flex' }}>
               <Button
                 className="tag"
