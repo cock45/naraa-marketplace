@@ -100,10 +100,10 @@ export const ProfileView = () => {
                   onChange={e => setUserName(e.target.value)}
                 />
                 {editable && (
-                  <>
+                  <div className="edit-btn">
                     {!nameEditable && <Button className="edit-pen" onClick={() => nameEditHandler(true)}><i className="fas fa-pen"></i></Button>}
                     {nameEditable && <Button className='btn-save' onClick={() => nameEditHandler(false)}>Save</Button>}
-                  </>
+                  </div>
                 )}
               </div>
               <div className='userInfo'>
@@ -115,10 +115,10 @@ export const ProfileView = () => {
                   // onChange={e => setUserName(e.target.value)}
                 />
                 {editable && (
-                  <>
+                  <div className="edit-btn">
                     {!vioEditable && <Button className="edit-pen" onClick={() => vioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
                     {vioEditable && <Button className='btn-save' onClick={() => vioEditHandler(false)}>Save</Button>}
-                  </>
+                  </div>
                 )}
               </div>
               <Button style={{backgroundColor:"#0057FF", width:"100%", borderRadius:"5px", color:"white", paddingTop:"13px", paddingBottom:"40px", marginTop:"30px"}}>Follow</Button>
