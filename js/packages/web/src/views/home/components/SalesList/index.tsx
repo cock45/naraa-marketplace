@@ -58,6 +58,7 @@ export const SalesListView = () => {
                     </>
                   }
                   key={LiveAuctionViewState.All}
+                  className="live"
                 ></TabPane>
                 {hasResaleAuctions && (
                   <TabPane

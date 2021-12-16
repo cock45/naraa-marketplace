@@ -126,6 +126,7 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
 
   useEffect(() => {
     if (pubkey) {
+      console.log("publickey => ", pubkey);
       dispatch(
         onGetUser({ address: pubkey })
         )

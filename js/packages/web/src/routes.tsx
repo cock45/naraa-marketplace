@@ -27,6 +27,7 @@ import { AdminView } from './views/admin';
 import { PackView } from './views/pack';
 import { PackCreateView } from './views/packCreate';
 import { BillingView } from './views/auction/billing';
+import { SalesListView } from './views/home/components/SalesList'
 
 export function Routes() {
   const shouldEnableNftPacks = process.env.NEXT_ENABLE_NFT_PACKS;
@@ -127,6 +128,12 @@ export function Routes() {
               exact
               path="/listforsale"
               component={() => <ListForSaleView />}
+            />
+
+            <Route
+              exact
+              path="/salesList"
+              component={() => <SalesListView />}
             />
 
             <Route

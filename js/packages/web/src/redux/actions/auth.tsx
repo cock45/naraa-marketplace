@@ -39,6 +39,7 @@ export const onRegister = (data: IUser) => {
 };
 
 export const onGetUser = (address: IAddress) => {
+  console.log('IAddress => ', address);
   return (dispatch: Dispatch) => {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}` + '/getUser', {
     fetch('https://dev-api.naraa.io/getUser', {

@@ -9,6 +9,8 @@ import { ArtworksView } from '../../components/ArtworksView';
 import { PortfolioView } from '../../components/Portfolio';
 import { AppreciationView } from '../../components/Apprecation';
 import { OffersView } from '../../components/Offers';
+import { PlusOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
 
 const { Content } = Layout;
 
@@ -22,9 +24,16 @@ export const ProfileView = () => {
   };
 
   const items = Object.values(whitelistedCreatorsByCreator);
-
+  
   const [tab, setTab] = useState(0);
-
+  const [editable, setEditible] = useState(false);
+  const [nameEditable, setNameEditible] = useState(false);
+  const [vioEditable, setVioEditible] = useState(false);
+  
+  const userInfo = useSelector((state: any) => state.auth).user.user;
+  const [userName, setUserName] = useState(userInfo.username);
+  const [userVio, setUserVio] = useState(userInfo.vio);
+  
   const artistGrid = (
     <div style={{padding: 30}}>
       <Masonry
@@ -52,6 +61,21 @@ export const ProfileView = () => {
     </div>
   );
 
+  const editHandler = () => {
+    setEditible(true);
+  }
+
+  const nameEditHandler = (x:boolean) => {
+    if(x) {
+
+    }
+    setNameEditible(x);
+  }
+
+  const vioEditHandler = (x:boolean) => {
+    setVioEditible(x);
+  }
+
   const images = [
     {items: ['./market/Rectangle.svg', './market/Rectangle3.svg', './market/Rectangle6.svg']},
     {items: ['./market/Rectangle1.svg', './market/Rectangle4.svg', './market/Rectangle7.svg']},
@@ -60,17 +84,43 @@ export const ProfileView = () => {
 
   return (
     <Layout style={{ margin: 0, marginTop: 30 }}>
-      <Content style={{padding:"0 40px"}}>
+      <Content style={{padding:"0 40px"}} className="profile">
         <div style={{backgroundColor: '#F3F3F3', width:"100%", padding:"0 40px", height:"400px"}} className="space_entire">
+          <Button className="btn-editcover" onClick={editHandler}>Edit Cover</Button>
         </div>
         <div className="little_space">
           <Row className="menu" gutter={16}>
             <Col span={5} className="gutter-row" style={{marginTop:"-150px", textAlign:"center"}}>
               <Image style={{borderRadius:"50%", width:"302px", height:"302px", margin:"auto"}} src="./Rectangle 809.png" preview={false} className="rectangle6" />
-              <h1 style={{marginBottom:"5px"}}>Jhone Doe</h1>
-              <span style={{color:"#616368", fontSize:"19pt"}}>Director, Designer<br/>
-              Tegusu Inc
-              </span>
+              <div className='userInfo'>
+                <input 
+                  value={userName}
+                  placeholder="Input your name"
+                  disabled={!nameEditable} 
+                  onChange={e => setUserName(e.target.value)}
+                />
+                {editable && (
+                  <>
+                    {!nameEditable && <Button className="edit-pen" onClick={() => nameEditHandler(true)}><i className="fas fa-pen"></i></Button>}
+                    {nameEditable && <Button className='btn-save' onClick={() => nameEditHandler(false)}>Save</Button>}
+                  </>
+                )}
+              </div>
+              <div className='userInfo'>
+                {/* <input value="Director, Designer Tegusu Inc" placeholder="Input your Vio" disabled={!vioEditable} /> */}
+                <input
+                  value={userVio}
+                  placeholder="Input your Vio"
+                  disabled={!vioEditable}
+                  // onChange={e => setUserName(e.target.value)}
+                />
+                {editable && (
+                  <>
+                    {!vioEditable && <Button className="edit-pen" onClick={() => vioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
+                    {vioEditable && <Button className='btn-save' onClick={() => vioEditHandler(false)}>Save</Button>}
+                  </>
+                )}
+              </div>
               <Button style={{backgroundColor:"#0057FF", width:"100%", borderRadius:"5px", color:"white", paddingTop:"13px", paddingBottom:"40px", marginTop:"30px"}}>Follow</Button>
               <div style={{paddingTop:"30px", color:"black", fontSize:"12pt", display:"flex", flexDirection:"column"}}>
                 <div>
@@ -120,6 +170,7 @@ export const ProfileView = () => {
                   <span style={{float:"left"}}>Following</span>
                   <span style={{float:"right"}}>162</span>
                 </Button>
+                <Button className="btn-addwebsites"><PlusOutlined />Add more Websites</Button>
               </div>
             </Col>
             <Col span={1}></Col>

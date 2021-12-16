@@ -324,18 +324,18 @@ export const AuctionView = () => {
             <Col span={12} md={16}>
               <div className={'info-container'}>
                 <div className={'info-component'}>
-                  <h6 className={'info-title'}>CREATED BY</h6>
+                  <h6 className={'info-title font-black'}>CREATED BY</h6>
                   <span>{<MetaAvatar creators={creators} />}</span>
                 </div>
                 <div className={'info-component'}>
-                  <h6 className={'info-title'}>Edition</h6>
-                  <span>
+                  <h6 className={'info-title font-black'}>Edition</h6>
+                  <span className="font-black">
                     {(auction?.items.length || 0) > 1 ? 'Multiple' : edition}
                   </span>
                 </div>
                 <div className={'info-component'}>
-                  <h6 className={'info-title'}>Winners</h6>
-                  <span>
+                  <h6 className={'info-title font-black'}>Winners</h6>
+                  <span className="font-black">
                     {winnerCount === undefined ? (
                       <Skeleton paragraph={{ rows: 0 }} />
                     ) : isOpen ? (
@@ -346,8 +346,8 @@ export const AuctionView = () => {
                   </span>
                 </div>
                 <div className={'info-component'}>
-                  <h6 className={'info-title'}>NFTS</h6>
-                  <span>
+                  <h6 className={'info-title font-black'}>NFTS</h6>
+                  <span className='font-black'>
                     {nftCount === undefined ? (
                       <Skeleton paragraph={{ rows: 0 }} />
                     ) : isOpen ? (
@@ -358,8 +358,8 @@ export const AuctionView = () => {
                   </span>
                 </div>
                 <div className={'info-component'}>
-                  <h6 className={'info-title'}>CURRENCY</h6>
-                  <span>
+                  <h6 className={'info-title font-black'}>CURRENCY</h6>
+                  <span className='font-black'>
                     {nftCount === undefined ? (
                       <Skeleton paragraph={{ rows: 0 }} />
                     ) : (
