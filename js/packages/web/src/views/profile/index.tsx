@@ -28,11 +28,11 @@ export const ProfileView = () => {
   const [tab, setTab] = useState(0);
   const [editable, setEditible] = useState(false);
   const [nameEditable, setNameEditible] = useState(false);
-  const [vioEditable, setVioEditible] = useState(false);
+  const [bioEditable, setBioEditible] = useState(false);
   
   const userInfo = useSelector((state: any) => state.auth).user.user;
   const [userName, setUserName] = useState(userInfo.username);
-  const [userVio, setUserVio] = useState(userInfo.vio);
+  const [userBio, setUserBio] = useState(userInfo.bio);
   
   const artistGrid = (
     <div style={{padding: 30}}>
@@ -72,8 +72,8 @@ export const ProfileView = () => {
     setNameEditible(x);
   }
 
-  const vioEditHandler = (x:boolean) => {
-    setVioEditible(x);
+  const bioEditHandler = (x:boolean) => {
+    setBioEditible(x);
   }
 
   const images = [
@@ -107,17 +107,17 @@ export const ProfileView = () => {
                 )}
               </div>
               <div className='userInfo'>
-                {/* <input value="Director, Designer Tegusu Inc" placeholder="Input your Vio" disabled={!vioEditable} /> */}
+                {/* <input value="Director, Designer Tegusu Inc" placeholder="Input your Bio" disabled={!bioEditable} /> */}
                 <input
-                  value={userVio}
-                  placeholder="Input your Vio"
-                  disabled={!vioEditable}
-                  // onChange={e => setUserName(e.target.value)}
+                  value={userBio}
+                  placeholder="Input your Bio"
+                  disabled={!bioEditable}
+                  onChange={e => setUserBio(e.target.value)}
                 />
                 {editable && (
-                  <div className="edit-btn">
-                    {!vioEditable && <Button className="edit-pen" onClick={() => vioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
-                    {vioEditable && <Button className='btn-save' onClick={() => vioEditHandler(false)}>Save</Button>}
+                  <div>
+                    {!bioEditable && <Button className="edit-pen" onClick={() => bioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
+                    {bioEditable && <Button className='btn-save' onClick={() => bioEditHandler(false)}>Save</Button>}
                   </div>
                 )}
               </div>
