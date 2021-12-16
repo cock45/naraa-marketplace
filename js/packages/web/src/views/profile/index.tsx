@@ -115,7 +115,7 @@ export const ProfileView = () => {
                   onChange={e => setUserBio(e.target.value)}
                 />
                 {editable && (
-                  <div>
+                  <div className="edit-btn">
                     {!bioEditable && <Button className="edit-pen" onClick={() => bioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
                     {bioEditable && <Button className='btn-save' onClick={() => bioEditHandler(false)}>Save</Button>}
                   </div>
