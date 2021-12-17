@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Providers } from './providers';
 import {
   AnalyticsView,
@@ -34,6 +35,7 @@ export function Routes() {
   return (
     <>
       <HashRouter basename={'/'}>
+      {/* <BrowserRouter basename={'/'}> */}
         <Providers>
           <Switch>
             <Route exact path="/admin" component={() => <AdminView />} />
@@ -146,6 +148,7 @@ export function Routes() {
           </Switch>
         </Providers>
       </HashRouter>
+      {/* </BrowserRouter> */}
     </>
   );
 }

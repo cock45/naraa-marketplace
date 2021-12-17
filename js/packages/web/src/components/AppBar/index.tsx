@@ -66,7 +66,6 @@ export function useWalletModal(): WalletModalContextState {
 const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
 
   const registeredUser = useSelector((state: any) => state.auth);
-  console.log('AAA =>', registeredUser);
   const { connected, publicKey } = useWallet();
   const { visible, setVisible } = useWalletModal();
   const { handleSubmit } = useForm<IUser>();
@@ -94,7 +93,6 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
 
   const connectWallet = () => {
-    console.log('phantomewallet => ', phatomWallet.name);
     select(phatomWallet[0].name);
     close();
   };
@@ -135,7 +133,6 @@ const DefaultActions = ({ vertical = false }: { vertical?: boolean }) => {
 
   useEffect(() => {
     if (registeredUser.user.user) {
-      console.log('registeredUser:', registeredUser);
       setRegistered(true);
     }
   }, [registeredUser])

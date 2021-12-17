@@ -9,7 +9,6 @@ const { Header, Content } = Layout;
 
 export const AppLayout = React.memo((props: any) => {
   const state = useSelector((state: any) => state);
-  console.log('state3: ', state) 
   return (
     <>
       <Layout id={'main-layout'}>

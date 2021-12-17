@@ -10,10 +10,14 @@ import { PortfolioView } from '../../components/Portfolio';
 import { AppreciationView } from '../../components/Apprecation';
 import { OffersView } from '../../components/Offers';
 import { PlusOutlined } from '@ant-design/icons';
+
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from "react-hook-form";
+import IUser from '../../redux/shared/IUser';
+import { onUpdateUser } from '../../redux/actions';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 const { Content } = Layout;
-
 export const ProfileView = () => {
   const { whitelistedCreatorsByCreator } = useMeta();
   const breakpointColumnsObj = {
@@ -29,10 +33,15 @@ export const ProfileView = () => {
   const [editable, setEditible] = useState(false);
   const [nameEditable, setNameEditible] = useState(false);
   const [bioEditable, setBioEditible] = useState(false);
+  const { handleSubmit } = useForm<IUser>();
+  const dispatch = useDispatch();
   
   const userInfo = useSelector((state: any) => state.auth).user.user;
   const [userName, setUserName] = useState(userInfo.username);
   const [userBio, setUserBio] = useState(userInfo.bio);
+
+  const { connected, publicKey } = useWallet();
+  const pubkey = publicKey?.toBase58() || '';
   
   const artistGrid = (
     <div style={{padding: 30}}>
@@ -61,20 +70,38 @@ export const ProfileView = () => {
     </div>
   );
 
+  const handledNameUpdate = (data: IUser) => {
+    data.username = userName;
+    data.bio = userBio;
+    data.address = pubkey;
+    nameEditHandler(false);
+    dispatch(
+      onUpdateUser(data)
+    );
+  };
+
+  const handledBioUpdate = (data: IUser) => {
+    data.username = userName;
+    data.bio = userBio;
+    data.address = pubkey;
+    bioEditHandler(false);
+    dispatch(
+      onUpdateUser(data)
+    );
+  };
+
   const editHandler = () => {
     setEditible(true);
   }
 
   const nameEditHandler = (x:boolean) => {
-    if(x) {
-
-    }
     setNameEditible(x);
   }
 
   const bioEditHandler = (x:boolean) => {
     setBioEditible(x);
   }
+
 
   const images = [
     {items: ['./market/Rectangle.svg', './market/Rectangle3.svg', './market/Rectangle6.svg']},
@@ -102,7 +129,7 @@ export const ProfileView = () => {
                 {editable && (
                   <div className="edit-btn">
                     {!nameEditable && <Button className="edit-pen" onClick={() => nameEditHandler(true)}><i className="fas fa-pen"></i></Button>}
-                    {nameEditable && <Button className='btn-save' onClick={() => nameEditHandler(false)}>Save</Button>}
+                    {nameEditable && <Button className='btn-save' onClick={handleSubmit(handledNameUpdate)}>Save</Button>}
                   </div>
                 )}
               </div>
@@ -117,7 +144,7 @@ export const ProfileView = () => {
                 {editable && (
                   <div className="edit-btn">
                     {!bioEditable && <Button className="edit-pen" onClick={() => bioEditHandler(true)}><i className="fas fa-pen"></i></Button>}
-                    {bioEditable && <Button className='btn-save' onClick={() => bioEditHandler(false)}>Save</Button>}
+                    {bioEditable && <Button className='btn-save' onClick={handleSubmit(handledBioUpdate)}>Save</Button>}
                   </div>
                 )}
               </div>

@@ -12,21 +12,24 @@ exports.getUser = async (req, res, next) => {
     return;
   }
 
-  User.findOne({
-    where: {
-      address: req.body.address
-    }
-  }).then(data => {
-    if (data) {
-      res.json({
-        success: true,
-        user: data
-      });
-    } else {
-      res.json({
-        success: false,
-      });
-    }
-  })
+  // try{ 
+    User.findOne({
+      where: {
+        address: req.body.address
+      }
+    }).then(data => {
+      if (data) {
+        res.json({
+          success: true,
+          user: data
+        });
+      } else {
+        res.json({
+          success: false,
+        });
+      }
+    }).catch ((err) =>{
+      console.log('error:', err);
+    })
 
 };

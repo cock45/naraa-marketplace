@@ -12,12 +12,13 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
         unique: true,
       },
-      vio: {
+      bio: {
         type:Sequelize.STRING,
       },
       user_type: {
         type: Sequelize.INTEGER,
-      },address: {
+      },
+      address: {
         type: Sequelize.STRING,
         unique: true,
       },

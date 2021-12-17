@@ -1,9 +1,9 @@
-import { GET_USER_SUCCESS, REGISTER_SUCCESS } from '../shared/actionTypes';
+import { GET_USER_SUCCESS, REGISTER_SUCCESS, UPDATE_USER_SUCCESS } from '../shared/actionTypes';
 import initialState from './initialState';
-import { RegisterActionType, GetUserActionType } from '../shared/IActionTypes';
+import { RegisterActionType, GetUserActionType, UpdateUserActionType } from '../shared/IActionTypes';
 import { UserState } from '../shared/UserState';
 
-type ActionType = RegisterActionType | GetUserActionType;
+type ActionType = RegisterActionType | GetUserActionType | UpdateUserActionType ;
 
 const authReducer = (state = initialState, action: ActionType): UserState => {
   switch (action.type) {
@@ -14,6 +14,12 @@ const authReducer = (state = initialState, action: ActionType): UserState => {
       };
     }
     case GET_USER_SUCCESS: {
+      return {
+        ...state,
+        user: action.payload,
+      };
+    }
+    case UPDATE_USER_SUCCESS: {
       return {
         ...state,
         user: action.payload,

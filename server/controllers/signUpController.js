@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 exports.signUp = async (req, res, next) => {
+  console.log("Sign Up server is running");
   if (!req.body.address || !req.body.username || !req.body.email) {
     res.status(400).send({
       message: "Content can not be empty!",
@@ -17,8 +18,6 @@ exports.signUp = async (req, res, next) => {
     username: req.body.username,
     address: req.body.address,
   };
-
-  console.log('user => ', user);
 
   User.findOne({
     where: {

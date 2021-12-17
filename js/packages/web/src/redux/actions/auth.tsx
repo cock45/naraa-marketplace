@@ -2,6 +2,7 @@ import {
   REGISTER_SUCCESS,
   GET_USER_SUCCESS,
   GET_USER_FAILED,
+  UPDATE_USER_SUCCESS,
 } from '../shared/actionTypes';
 import { Dispatch } from 'redux';
 import IUser from '../shared/IUser';
@@ -13,9 +14,9 @@ import IAddress from '../shared/IAddress';
 
 export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
-    fetch('https://dev-api.naraa.io/signUp', {
+    // fetch('https://dev-api.naraa.io/signUp', {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
-    // fetch('http://localhost:3001/signUp', {
+    fetch('http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -42,9 +43,8 @@ export const onGetUser = (address: IAddress) => {
   console.log('IAddress => ', address);
   return (dispatch: Dispatch) => {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}` + '/getUser', {
-    fetch('https://dev-api.naraa.io/getUser', {
-    // fetch('http://localhost:3001/getUser', {
-    // fetch(`${process.env.APP_API_SERVER}` + '/getUser', {
+    // fetch('https://dev-api.naraa.io/getUser', {
+    fetch('http://localhost:3001/getUser', {
       method: 'POST',
       body: JSON.stringify(address),
       headers: {
@@ -59,6 +59,34 @@ export const onGetUser = (address: IAddress) => {
             type: GET_USER_SUCCESS,
             payload: {
               user: registeredUser.user,
+            },
+          });
+        }
+      });
+  };
+};
+
+export const onUpdateUser = (data: IUser) => {
+  console.log("Dispatch => ", data);
+  return (dispatch: Dispatch) => {
+    // fetch('https://dev-api.naraa.io/updateUser', {
+    // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
+    fetch('http://localhost:3001/updateUser', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then(response => response.json())
+      .then(user => {
+        if (!user || user.success == false) {
+          alert('Update Failed');
+        } else {
+          dispatch({
+            type: UPDATE_USER_SUCCESS,
+            payload: {
+              user: user.user,
             },
           });
         }
