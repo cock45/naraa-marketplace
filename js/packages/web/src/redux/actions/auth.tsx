@@ -14,9 +14,9 @@ import IAddress from '../shared/IAddress';
 
 export const onRegister = (data: IUser) => {
   return (dispatch: Dispatch) => {
-    // fetch('https://dev-api.naraa.io/signUp', {
+    fetch('https://dev-api.naraa.io/signUp', {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
-    fetch('http://localhost:3001/signUp', {
+    // fetch('http://localhost:3001/signUp', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -43,8 +43,8 @@ export const onGetUser = (address: IAddress) => {
   console.log('IAddress => ', address);
   return (dispatch: Dispatch) => {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}` + '/getUser', {
-    // fetch('https://dev-api.naraa.io/getUser', {
-    fetch('http://localhost:3001/getUser', {
+    fetch('https://dev-api.naraa.io/getUser', {
+    // fetch('http://localhost:3001/getUser', {
       method: 'POST',
       body: JSON.stringify(address),
       headers: {
@@ -69,9 +69,9 @@ export const onGetUser = (address: IAddress) => {
 export const onUpdateUser = (data: IUser) => {
   console.log("Dispatch => ", data);
   return (dispatch: Dispatch) => {
-    // fetch('https://dev-api.naraa.io/updateUser', {
+    fetch('https://dev-api.naraa.io/updateUser', {
     // fetch(`${process.env.REACT_APP_API_SERVER_LOCAL}`, {
-    fetch('http://localhost:3001/updateUser', {
+    // fetch('http://localhost:3001/updateUser', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
