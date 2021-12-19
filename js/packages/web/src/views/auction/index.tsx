@@ -569,7 +569,7 @@ const BidLine = (props: {
             />{' '}
             <span style={{ opacity: 0.7 }}>
               {bidderTwitterHandle ? (
-                <Row className="pubkey-row">
+                <Row className="pubkey-row font-black">
                   <a
                     target="_blank"
                     title={shortenAddress(bidder)}
@@ -581,7 +581,7 @@ const BidLine = (props: {
                   />
                 </Row>
               ) : (
-                <Row className="pubkey-row">
+                <Row className="pubkey-row font-black">
                   {shortenAddress(bidder)}
                   <ClickToCopy
                     className="copy-pubkey"
@@ -649,7 +649,7 @@ export const AuctionBids = ({
   return (
     <Row>
       <Col className="bids-lists">
-        <h6 className={'info-title'}>Bid History</h6>
+        <h6 className={'info-title font-black'}>Bid History</h6>
         {bidLines.slice(0, 10)}
         {bids.length > 10 && (
           <div

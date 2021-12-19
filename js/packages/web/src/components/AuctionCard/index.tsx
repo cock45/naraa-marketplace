@@ -664,7 +664,8 @@ export const AuctionCard = ({
                   fontSize: '14px',
                   lineHeight: '14px',
                   textTransform: 'uppercase',
-                  color: 'rgba(255, 255, 255, 0.7)',
+                  // color: 'rgba(255, 255, 255, 0.7)',
+                  color: '#fff',
                 }}
               >
                 your bid
@@ -714,7 +715,7 @@ export const AuctionCard = ({
                     Cancel
                   </Button>
                   <Button
-                    className="secondary-btn"
+                    className="secondary-btn font-black"
                     disabled={invalidBid}
                     onClick={async () => {
                       setLoading(true);
