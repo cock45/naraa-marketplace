@@ -53,14 +53,14 @@ export const Settings = ({
               </div>
             </Tooltip>
 
-            <HashQueryLink
+            {/* <HashQueryLink
               to={`/profile/${publicKey?.toBase58()}`}
               style={{
                 color: 'rgba(255, 255, 255, 0.7)',
               }}
             >
               View profile
-            </HashQueryLink>
+            </HashQueryLink> */}
           </>
         )}
         <br />

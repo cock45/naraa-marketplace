@@ -72,6 +72,9 @@ const UserActions = (props: { mobile?: boolean; onClick?: any }) => {
                 Sell
               </Button>
             </HashQueryLink>
+            <Link to={`/salesList`}>
+              <Button style={{background: 'transparent', border: 'none', padding: '16px 12px'}}>SalesList</Button>
+            </Link>
           </div>
         {/* ) : (
           <div

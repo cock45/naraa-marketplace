@@ -157,7 +157,7 @@ export const AuctionView = () => {
           </div>
         </Col>
         <Col className="auction-mobile-section">
-          <h2 className="art-title">
+          <h2 className="art-title font-black">
             {art.title || <Skeleton paragraph={{ rows: 0 }} />}
           </h2>
 
@@ -382,7 +382,7 @@ export const AuctionView = () => {
             <Col span={12} md={8} className="view-on-container">
               <div className="info-view-container">
                 <div className="info-view">
-                  <h6 className="info-title">View on</h6>
+                  <h6 className="info-title font-black">View on</h6>
                   <div style={{ display: 'flex' }}>
                     <Button
                       className="tag"

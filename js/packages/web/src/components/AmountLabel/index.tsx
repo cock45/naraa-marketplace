@@ -55,14 +55,14 @@ export const AmountLabel = (props: IAmountLabel) => {
       {PriceNaN === false && (
         <Statistic
           style={style}
-          className="create-statistic"
+          className="create-statistic font-black"
           title={title || ''}
           value={`${formattedAmount} ${displaySymbol || ''}`}
           prefix={customPrefix || <TokenCircle iconSize={iconSize} iconFile={tokenInfo?.logoURI==""? undefined: tokenInfo?.logoURI}/>}
         />
       )}
       {displayUSD && (
-        <div className="usd">
+        <div className="usd font-black">
           {PriceNaN === false ? (
             priceUSD? formatUSD.format(priceUSD): "$N/A"
           ) : (

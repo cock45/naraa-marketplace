@@ -37,8 +37,8 @@ export const ProfileView = () => {
   const dispatch = useDispatch();
   
   const userInfo = useSelector((state: any) => state.auth).user.user;
-  const [userName, setUserName] = useState(userInfo.username);
-  const [userBio, setUserBio] = useState(userInfo.bio);
+  const [userName, setUserName] = useState(userInfo?.username);
+  const [userBio, setUserBio] = useState(userInfo?.bio);
 
   const { connected, publicKey } = useWallet();
   const pubkey = publicKey?.toBase58() || '';
