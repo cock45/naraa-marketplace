@@ -5,11 +5,11 @@ import {
 } from '@solana/wallet-adapter-react';
 import {
   getLedgerWallet,
+  getSolongWallet,
   getMathWallet,
   getPhantomWallet,
   getSolflareWallet,
   getSolletWallet,
-  getSolongWallet,
   getTorusWallet,
   WalletName,
 } from '@solana/wallet-adapter-wallets';
@@ -26,6 +26,7 @@ import React, {
 } from 'react';
 import { notify } from '../utils';
 import { MetaplexModal } from '../components';
+import { Image } from 'antd';
 
 const { Panel } = Collapse;
 
@@ -52,10 +53,13 @@ export const WalletModal: FC = () => {
   }, [setVisible, setShowWallets]);
 
   const phatomWallet = useMemo(() => getPhantomWallet(), []);
+  const solletWallet = useMemo(() => getSolletWallet(), []);
+  const solflareWallet = useMemo(() => getSolflareWallet(), []);
 
   return (
-    <MetaplexModal title="Connect to Wallet" visible={visible} onCancel={close} className="modal-connect-wallet">
-      <span
+    // <MetaplexModal title="Connect to Wallet" visible={visible} onCancel={close} className="modal-connect-wallet">
+    <MetaplexModal title="" visible={visible} onCancel={close} className="modal-connect-wallet">
+      {/* <span
         style={{
           color: 'rgba(255, 255, 255, 0.75)',
           fontSize: '14px',
@@ -66,19 +70,44 @@ export const WalletModal: FC = () => {
         }}
       >
         RECOMMENDED
-      </span>
-
+      </span> */}
+      <div className="wallet-header">
+        <Image src="./wallet/wallet-logo.png" preview={false}/>
+        <h2 className='font-black'>Connect Wallet</h2>
+      </div>
       <Button
-        className="phantom-button metaplex-button"
+        className="metaplex-button"
         onClick={() => {
-          console.log(phatomWallet.name);
+          console.log("wallet Name => ", phatomWallet.name);
           select(phatomWallet.name);
           close();
         }}
         style={{background: '#FFF !important'}}
       >
-        <img src={phatomWallet?.icon} style={{ width: '1.2rem' }} />
-        &nbsp;Connect to Phantom
+        Phantom
+        &nbsp;<img src={phatomWallet?.icon} style={{ width: '1.8rem' }} />
+      </Button>
+      <Button
+        className="metaplex-button"
+        onClick={() => {
+          select(solletWallet.name);
+          close();
+        }}
+        style={{background: '#FFF !important'}}
+      >
+        Sollet
+        &nbsp;<img src='./wallet/Sollet.png' style={{ width: '1.8rem' }} />
+      </Button>
+      <Button
+        className="metaplex-button"
+        onClick={() => {
+          select(solflareWallet.name);
+          close();
+        }}
+        style={{background: '#FFF !important'}}
+      >
+        Solflare
+        &nbsp;<img src={solflareWallet?.icon} style={{ width: '1.8rem' }} />
       </Button>
       <Collapse
         ghost
@@ -126,7 +155,7 @@ export const WalletModal: FC = () => {
                 fontSize: '16px',
                 lineHeight: '16px',
                 letterSpacing: '-0.01em',
-                color: 'rgba(255, 255, 255, 255)',
+                color: '#000',
               }}
             >
               Other Wallets
@@ -135,7 +164,7 @@ export const WalletModal: FC = () => {
           key="1"
         >
           {wallets.map((wallet, idx) => {
-            if (wallet.name === 'Phantom') return null;
+            if (wallet.name === 'Phantom' || wallet.name === 'Sollet' || wallet.name === 'Solflare') return null;
 
             return (
               <Button
@@ -149,7 +178,8 @@ export const WalletModal: FC = () => {
                   close();
                 }}
               >
-                Connect to {wallet.name}
+                {wallet.name}
+                &nbsp;<img src={'./wallet/'+wallet.name+'.png'} style={{ width: '1.8rem' }} />
               </Button>
             );
           })}
